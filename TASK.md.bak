@@ -1,0 +1,161 @@
+Build a Next.js website called "Siva's Proof-of-Work Ledger" — a public record of everything Siva builds.
+
+## Core concept
+A living, auto-updated website where each "case" is: a business problem → what was built → outcome/result.
+Data source: markdown files from GitHub repo sivasubramanians12-coder/siva-builds
+
+## Pages
+1. / (Home) — Hero + stream of Case cards
+2. /cases/[slug] — Individual case detail page
+3. /log — Chronological daily build log (from siva-builds/daily/*.md)
+
+## Tech Stack
+- Next.js 14 (App Router, TypeScript)
+- Tailwind CSS
+- Static site generation (getStaticProps / generateStaticParams)
+- No database — reads markdown files from GitHub API or local files
+- Deploy target: Vercel
+
+## Brand Identity (EXACT — use these values)
+```css
+:root {
+  --ink: #1a1a1a;
+  --paper: #f5f2eb;
+  --paper-warm: #ebe5d8;
+  --graphite: #4a4a4a;
+  --pencil: #8a8578;
+  --signal-amber: #c4841d;
+  --signal-amber-light: #f0d9a8;
+  --signal-red: #b84233;
+  --draft-blue: #2d5f8a;
+  --draft-blue-light: #d4e3f0;
+  --evidence-green: #3a6b4a;
+  --white: #ffffff;
+  --type-display: 'Instrument Serif', Georgia, serif;
+  --type-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  --type-body: 'DM Sans', 'Helvetica Neue', sans-serif;
+}
+```
+- Background: var(--paper) #f5f2eb (warm cream — NOT white)
+- Grid paper texture: `background-image: linear-gradient(rgba(26,26,26,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(26,26,26,0.03) 1px, transparent 1px); background-size: 24px 24px;`
+- Border radius: 2px throughout (flat, not rounded)
+- Texture strip at top: `height:4px; background: linear-gradient(90deg, #c4841d 0%, #c4841d 60%, #2d5f8a 60%, #2d5f8a 80%, #3a6b4a 80%, #3a6b4a 100%);`
+
+## Hero Section
+- Dark ink background (#1a1a1a)
+- Amber grid overlay (rgba(196,132,29,0.08))
+- Name: "Siva" in Instrument Serif, large
+- Tagline: "The business leader who builds."
+- Sub: "Country Head, Hunter Douglas India. 14 years across AB InBev, Diageo, Nike. Building AI systems to solve the operational problems I live with every day."
+- Mantra bottom right: "BUILD → MEASURE → PROVE" in IBM Plex Mono, amber
+
+## Case Card Component
+Each card has:
+- Header: domain tag (amber pill, mono) + status dot + title (Instrument Serif)
+- Body: 3-col meta grid (Domain / Status / Built) in mono labels
+- Excerpt: left-border amber, body text
+- Footer: outcome in evidence-green mono + "Read case →" link
+
+### Tag colours
+- OPS: amber-light bg, amber text
+- BUILD: draft-blue-light bg, draft-blue text  
+- OUTCOME: green/10 bg, evidence-green text
+- TOOL: ink/6 bg, graphite text
+
+### Status dots
+- Live: evidence-green (#3a6b4a)
+- In Progress: signal-amber (#c4841d)
+- Archived: pencil (#8a8578)
+
+## Cases to pre-populate (hardcode as MDX/JSON for v1)
+
+### Case 1: Geneva — Sales Pipeline
+- Domain: OPS
+- Status: Live
+- Problem: "Hunter Douglas India runs two sales divisions through disconnected tools. Pipeline visibility was manual. Leadership reporting required consolidating inputs from multiple people."
+- Built: "Unified sales pipeline platform — FastAPI + React + Supabase + Railway. Telegram bot for field reps. Role-based dashboards for reps, managers, leadership."
+- Outcome: "Time from field update to leadership visibility: days → hours"
+- Stack: FastAPI, React, Supabase, Telegram, Railway
+
+### Case 2: HD Hire — AI Applicant Tracking
+- Domain: OPS
+- Status: Live
+- Problem: "Hiring at a 30-person company is high-stakes and under-resourced. CVs pile up. Feedback gets lost. Good candidates go cold."
+- Built: "AI-augmented ATS — Claude scores applications, ElevenLabs handles voice screening, candidates self-schedule via Cal.com. Full email automation via Resend."
+- Outcome: "Consistent, repeatable hiring process that doesn't depend on someone having bandwidth"
+- Stack: Next.js, Supabase, Claude API, ElevenLabs, Cal.com
+
+### Case 3: SpiceScience — RAG Knowledge App
+- Domain: BUILD
+- Status: Live
+- Problem: "A book on spice flavour chemistry — 'The Science of Spice' — contains expert knowledge inaccessible to most cooks."
+- Built: "Embedded 1,200+ knowledge chunks into Pinecone. Flask API + vanilla JS frontend. Spice Explorer, Custom Blend Creator, Cuisine recommendations."
+- Outcome: "Domain expertise from a specialist book, accessible via natural language"
+- Stack: Flask, Pinecone, OpenAI, Python
+
+### Case 4: CoachOS — Leadership Coach AI System
+- Domain: BUILD
+- Status: Live
+- Problem: "A leadership coach with 30 years of experience: knowledge exists across notes, sessions, frameworks. Every new client starts from scratch."
+- Built: "AI system on Airtable + Obsidian + Pinecone + Claude. Surfaces institutional knowledge on demand, drafts session prep and follow-ups. Nothing reaches clients without coach approval."
+- Outcome: "Expertise available at scale; coach admin time reduced significantly"
+- Stack: Airtable, Obsidian, Pinecone, Claude API, Make.com
+
+### Case 5: Personal AI OS — Agent Infrastructure
+- Domain: BUILD
+- Status: In Progress
+- Problem: "Running a 30-person business while building AI systems means context-switching constantly. Information gets lost between sessions."
+- Built: "3-agent system (orchestrator + research + coding). 3-layer memory architecture. Daily digests across 80+ sources. Deep research skill. Voice transcription via Groq Whisper."
+- Outcome: "Active — compounds daily"
+- Stack: OpenClaw, Claude, Groq, Gemini, Telegram
+
+## /log Page
+- Simple chronological list of daily entries
+- Each entry: date in mono, title, short excerpt
+- Read from /data/log/*.md (hardcode sample entries for v1)
+- Link to full entry (expand inline or separate page)
+
+## Navigation
+- Minimal: "Siva" wordmark left, "Cases" + "Log" right
+- Mono font, small, understated
+
+## Footer
+- "BUILD → MEASURE → PROVE"
+- Links: GitHub (sivasubramanians12-coder) | siva-builds repo
+- Version stamp: "Updated [date]"
+
+## File structure
+```
+/app
+  /page.tsx (home + cases feed)
+  /cases/[slug]/page.tsx
+  /log/page.tsx
+  /layout.tsx (fonts, global styles)
+/components
+  /CaseCard.tsx
+  /Hero.tsx
+  /Nav.tsx
+  /Footer.tsx
+/data
+  /cases.ts (typed case data)
+  /log/ (sample .md files)
+/styles
+  /globals.css (CSS variables + base styles)
+```
+
+## Fonts
+Import from Google Fonts:
+- IBM Plex Mono: 400, 500, 600
+- Instrument Serif: 400, 400 italic
+- DM Sans: 400, 500, 600
+
+## Important
+- Pixel-perfect to the brand system above
+- Mobile responsive
+- No external UI library (pure Tailwind + CSS variables)
+- TypeScript strict
+- All 5 cases working with full content
+- /log page working with at least 3 sample entries
+
+When completely done, run:
+openclaw system event --text "Done: Siva Proof-of-Work site built — Next.js + full brand system, 5 cases, /log page" --mode now
