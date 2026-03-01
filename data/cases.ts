@@ -40,20 +40,20 @@ export const cases: Case[] = [
     outcome: 'Time from field update to leadership visibility: days → hours',
     stack: ['FastAPI', 'React', 'Supabase', 'Telegram', 'Railway', 'Redis'],
     excerpt: 'Disconnected tools meant leadership visibility required manual consolidation across divisions. Built a unified pipeline platform with role-based dashboards and a Telegram bot for field reps.',
-    context: 'Hunter Douglas India operates two distinct sales divisions — Architectural Products (ceilings, facades, louvers) and Window Covering Products (blinds, curtains). Both divisions shared the same sales team structure but had no unified view of pipeline activity. At any given time, leadership had to wait for weekly Excel updates consolidated across 4–5 people before having a picture of where revenue was coming from. Field reps were on the road. They were not opening dashboards.',
+    context: 'Hunter Douglas India — 120 people across operations, manufacturing, and sales — operates two distinct sales divisions — Architectural Products (ceilings, facades, louvers) and Window Covering Products (blinds, curtains). Both divisions shared the same sales team structure but had no unified view of pipeline activity. At any given time, leadership had to wait for weekly Excel updates consolidated across 4–5 people before having a picture of where revenue was coming from. Field reps were on the road. They were not opening dashboards.',
     challenge: 'The core problem was not data — it was latency. By the time a rep updated a spreadsheet, a manager reviewed it, and leadership consolidated the picture, the information was 3–5 days old. Decisions were being made on stale context. Stage transitions were not being logged, so there was no way to identify where deals were dying.',
     approach: [
       'Map the existing workflow before touching any code — understand how reps actually update deals, not how the process was supposed to work',
       'Design around the Telegram-first interface — reps are on their phones, not laptops. If it is not a message, they will not use it',
       'Build role-based views from day one — rep, manager, and leadership have different information needs. One dashboard for everyone serves no one',
       'Log every stage transition with timestamp and actor — the audit trail is the product',
-      'Deploy on Railway for simplicity — 30-person company, not a startup that needs Kubernetes'
+      'Deploy on Railway for simplicity — sales-sized team, not a startup that needs Kubernetes'
     ],
     decisions: [
       { decision: 'Telegram bot as the primary rep interface', rationale: 'Field reps spend the day on their phones. A web dashboard requires intent — opening a browser, logging in, navigating. A Telegram message is zero friction. Meets people where they already are.' },
       { decision: 'FastAPI over Django or Node', rationale: 'Async-first, fast to prototype, excellent Supabase integration. The team does not need the batteries Django includes — a clean REST API is all we need.' },
-      { decision: 'Supabase over a self-managed Postgres instance', rationale: 'Built-in auth, realtime subscriptions, and row-level security. For a 30-person company, managed infrastructure is worth the cost.' },
-      { decision: 'No mobile app', rationale: 'Building and maintaining a native app for a 30-person sales team is disproportionate effort. Telegram handles the mobile interface. Web handles the dashboard.' }
+      { decision: 'Supabase over a self-managed Postgres instance', rationale: 'Built-in auth, realtime subscriptions, and row-level security. For a growing company, managed infrastructure is worth the cost.' },
+      { decision: 'No mobile app', rationale: 'Building and maintaining a native app for the sales team is disproportionate effort. Telegram handles the mobile interface. Web handles the dashboard.' }
     ],
     learnings: [
       'The best interface is the one people already use. Do not build a new habit — integrate with an existing one.',
@@ -75,12 +75,12 @@ export const cases: Case[] = [
     status: 'Live',
     date: 'January 2026',
     industry: 'Manufacturing / Operations',
-    problem: 'Hiring at a 30-person company is high-stakes and under-resourced. CVs pile up. Feedback gets lost. Good candidates go cold while the team is busy running the business.',
+    problem: 'Hiring at a 120-person company is high-stakes and under-resourced. CVs pile up. Feedback gets lost. Good candidates go cold while the team is busy running the business.',
     built: 'AI-augmented ATS — Claude scores applications, ElevenLabs handles voice screening, candidates self-schedule via Cal.com. Full email automation via Resend.',
     outcome: 'Consistent, repeatable hiring process that does not depend on someone having bandwidth',
     stack: ['Next.js', 'Supabase', 'Claude API', 'ElevenLabs', 'Cal.com', 'Resend'],
-    excerpt: 'At a 30-person company, hiring is high-stakes and under-resourced. Built an AI-augmented ATS where Claude scores applications and ElevenLabs runs voice screening.',
-    context: 'Every hire at a 30-person company has outsized impact. A bad hire in a small team does not get absorbed — it creates friction that affects everyone. And yet, the hiring process was the least systematised part of the operation. CVs arrived via email, were discussed over WhatsApp, and feedback was stored in someone\'s head. Candidates would go a week without hearing anything — not because no one cared, but because the team was busy running the business.',
+    excerpt: 'At a 120-person company, hiring is high-stakes and under-resourced. Built an AI-augmented ATS where Claude scores applications and ElevenLabs runs voice screening.',
+    context: 'Every hire at a 120-person company has outsized impact. A bad hire in a small team does not get absorbed — it creates friction that affects everyone. And yet, the hiring process was the least systematised part of the operation. CVs arrived via email, were discussed over WhatsApp, and feedback was stored in someone\'s head. Candidates would go a week without hearing anything — not because no one cared, but because the team was busy running the business.',
     challenge: 'The constraint was not budget or intent — it was bandwidth. Screening CVs takes time. Scheduling calls takes coordination. Following up requires remembering. A small team simply does not have the overhead to run a rigorous process manually.',
     approach: [
       'Design the candidate experience first — a slow, disorganised process reflects on the company even when no one is hired',
@@ -195,7 +195,7 @@ export const cases: Case[] = [
     status: 'In Progress',
     date: 'March 2026',
     industry: 'Personal Infrastructure / AI Systems',
-    problem: 'Running a 30-person business while building AI systems means context-switching constantly. Information gets lost between sessions. The same questions get answered again.',
+    problem: 'Running a 120-person business while building AI systems means context-switching constantly. Information gets lost between sessions. The same questions get answered again.',
     built: '3-agent system (orchestrator + research + coding). 3-layer memory architecture. Daily digests across 80+ sources. Deep research skill. Voice transcription via Groq Whisper.',
     outcome: 'Active — compounds daily',
     stack: ['OpenClaw', 'Claude', 'Groq Whisper', 'Gemini', 'Telegram', 'GitHub'],
