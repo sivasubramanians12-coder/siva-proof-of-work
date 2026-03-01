@@ -1,23 +1,22 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { cases, getCaseBySlug, type Domain, type Status } from '@/data/cases';
+import { fetchCases, fetchCaseBySlug } from '@/lib/cases';
+import type { Domain, Status } from '@/data/cases';
 import type { Metadata } from 'next';
 
-interface PageProps {
-  params: { slug: string };
-}
+export const revalidate = 3600;
+
+interface PageProps { params: { slug: string }; }
 
 export async function generateStaticParams() {
+  const cases = await fetchCases();
   return cases.map((c) => ({ slug: c.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const c = getCaseBySlug(params.slug);
+  const c = await fetchCaseBySlug(params.slug);
   if (!c) return { title: 'Case Not Found' };
-  return {
-    title: `${c.title} — Siva's Proof-of-Work`,
-    description: c.excerpt,
-  };
+  return { title: `${c.title} — Siva's Proof-of-Work`, description: c.excerpt };
 }
 
 const domainStyles: Record<Domain, { bg: string; color: string }> = {
@@ -26,75 +25,46 @@ const domainStyles: Record<Domain, { bg: string; color: string }> = {
   OUTCOME: { bg: 'rgba(58,107,74,0.1)', color: 'var(--evidence-green)' },
   TOOL: { bg: 'rgba(26,26,26,0.06)', color: 'var(--graphite)' },
 };
-
 const statusColors: Record<Status, string> = {
   Live: 'var(--evidence-green)',
   'In Progress': 'var(--signal-amber)',
   Archived: 'var(--pencil)',
 };
-
-const sectionLabel = (text: string, color = 'var(--signal-amber)') => ({
-  fontFamily: 'var(--type-mono)',
-  fontSize: '10px',
-  fontWeight: 600,
-  letterSpacing: '0.12em',
-  textTransform: 'uppercase' as const,
-  color,
-  marginBottom: '16px',
-  display: 'block',
+const sectionLabel = (color = 'var(--signal-amber)') => ({
+  fontFamily: 'var(--type-mono)', fontSize: '10px', fontWeight: 600,
+  letterSpacing: '0.12em', textTransform: 'uppercase' as const,
+  color, marginBottom: '16px', display: 'block',
 });
+const bodyText = { fontFamily: 'var(--type-body)', fontSize: '16px', lineHeight: 1.75, color: 'var(--graphite)' };
 
-const bodyText = {
-  fontFamily: 'var(--type-body)',
-  fontSize: '16px',
-  lineHeight: 1.75,
-  color: 'var(--graphite)',
-};
-
-export default function CasePage({ params }: PageProps) {
-  const c = getCaseBySlug(params.slug);
+export default async function CasePage({ params }: PageProps) {
+  const c = await fetchCaseBySlug(params.slug);
   if (!c) notFound();
-
   const dStyle = domainStyles[c.domain];
   const statusColor = statusColors[c.status];
 
   return (
     <main style={{ maxWidth: '760px', margin: '0 auto', padding: '56px 24px 80px' }}>
-      <Link href="/#cases" style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', color: 'var(--pencil)', letterSpacing: '0.06em', display: 'inline-flex', alignItems: 'center', gap: '6px', marginBottom: '40px' }}>
-        ← All cases
-      </Link>
+      <Link href="/#cases" style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', color: 'var(--pencil)', letterSpacing: '0.06em', display: 'inline-flex', alignItems: 'center', gap: '6px', marginBottom: '40px' }}>← All cases</Link>
 
       <header style={{ marginBottom: '48px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px', flexWrap: 'wrap' }}>
-          <span style={{ fontFamily: 'var(--type-mono)', fontSize: '10px', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', backgroundColor: dStyle.bg, color: dStyle.color, padding: '3px 8px', borderRadius: '2px' }}>
-            {c.domain}
-          </span>
+          <span style={{ fontFamily: 'var(--type-mono)', fontSize: '10px', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', backgroundColor: dStyle.bg, color: dStyle.color, padding: '3px 8px', borderRadius: '2px' }}>{c.domain}</span>
           <span style={{ display: 'flex', alignItems: 'center', gap: '5px', fontFamily: 'var(--type-mono)', fontSize: '10px', color: 'var(--pencil)' }}>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: statusColor, display: 'inline-block' }} />
-            {c.status}
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: statusColor, display: 'inline-block' }} />{c.status}
           </span>
           {c.date && <span style={{ fontFamily: 'var(--type-mono)', fontSize: '10px', color: 'var(--pencil)' }}>{c.date}</span>}
           {c.industry && <span style={{ fontFamily: 'var(--type-mono)', fontSize: '10px', color: 'var(--pencil)' }}>{c.industry}</span>}
         </div>
-
-        <h1 style={{ fontFamily: 'var(--type-display)', fontSize: 'clamp(32px, 5vw, 48px)', lineHeight: 1.1, color: 'var(--ink)', letterSpacing: '-0.02em', marginBottom: '24px' }}>
-          {c.title}
-        </h1>
-
+        <h1 style={{ fontFamily: 'var(--type-display)', fontSize: 'clamp(32px, 5vw, 48px)', lineHeight: 1.1, color: 'var(--ink)', letterSpacing: '-0.02em', marginBottom: '24px' }}>{c.title}</h1>
         <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-          {c.stack.map((tech) => (
-            <span key={tech} style={{ fontFamily: 'var(--type-mono)', fontSize: '10px', color: 'var(--graphite)', backgroundColor: 'rgba(26,26,26,0.06)', padding: '3px 8px', borderRadius: '2px' }}>
-              {tech}
-            </span>
-          ))}
+          {c.stack.map((tech) => (<span key={tech} style={{ fontFamily: 'var(--type-mono)', fontSize: '10px', color: 'var(--graphite)', backgroundColor: 'rgba(26,26,26,0.06)', padding: '3px 8px', borderRadius: '2px' }}>{tech}</span>))}
         </div>
       </header>
 
       <div style={{ height: '1px', backgroundColor: 'rgba(26,26,26,0.08)', marginBottom: '48px' }} />
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
-
-        {/* Metrics */}
         {c.metrics && c.metrics.length > 0 && (
           <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '24px', padding: '32px', backgroundColor: 'var(--paper-warm)', borderRadius: '2px', border: '1px solid rgba(26,26,26,0.06)' }}>
             {c.metrics.map((m) => (
@@ -106,33 +76,12 @@ export default function CasePage({ params }: PageProps) {
             ))}
           </section>
         )}
-
-        {/* Context */}
-        {c.context && (
-          <section>
-            <span style={sectionLabel('Context')}>Context</span>
-            <p style={bodyText}>{c.context}</p>
-          </section>
-        )}
-
-        {/* Challenge */}
-        {c.challenge && (
-          <section>
-            <span style={sectionLabel('The Challenge', 'var(--signal-red)')}>The Challenge</span>
-            <p style={bodyText}>{c.challenge}</p>
-          </section>
-        )}
-
-        {/* Problem */}
-        <section>
-          <span style={sectionLabel('The Problem')}>The Problem</span>
-          <p style={bodyText}>{c.problem}</p>
-        </section>
-
-        {/* Approach */}
+        {c.context && <section><span style={sectionLabel()}>Context</span><p style={bodyText}>{c.context}</p></section>}
+        {c.challenge && <section><span style={sectionLabel('var(--signal-red)')}>The Challenge</span><p style={bodyText}>{c.challenge}</p></section>}
+        <section><span style={sectionLabel()}>The Problem</span><p style={bodyText}>{c.problem}</p></section>
         {c.approach && c.approach.length > 0 && (
           <section>
-            <span style={sectionLabel('Approach', 'var(--draft-blue)')}>Approach</span>
+            <span style={sectionLabel('var(--draft-blue)')}>Approach</span>
             <ol style={{ paddingLeft: '0', listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {c.approach.map((step, i) => (
                 <li key={i} style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
@@ -143,19 +92,13 @@ export default function CasePage({ params }: PageProps) {
             </ol>
           </section>
         )}
-
-        {/* What was built */}
         <section>
-          <span style={sectionLabel('What Was Built', 'var(--draft-blue)')}>What Was Built</span>
-          <div style={{ borderLeft: '3px solid var(--signal-amber)', paddingLeft: '20px' }}>
-            <p style={bodyText}>{c.built}</p>
-          </div>
+          <span style={sectionLabel('var(--draft-blue)')}>What Was Built</span>
+          <div style={{ borderLeft: '3px solid var(--signal-amber)', paddingLeft: '20px' }}><p style={bodyText}>{c.built}</p></div>
         </section>
-
-        {/* Decisions */}
         {c.decisions && c.decisions.length > 0 && (
           <section>
-            <span style={sectionLabel('Key Decisions')}>Key Decisions</span>
+            <span style={sectionLabel()}>Key Decisions</span>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               {c.decisions.map((d, i) => (
                 <div key={i} style={{ backgroundColor: 'var(--white)', border: '1px solid rgba(26,26,26,0.08)', borderRadius: '2px', padding: '20px 24px' }}>
@@ -166,17 +109,13 @@ export default function CasePage({ params }: PageProps) {
             </div>
           </section>
         )}
-
-        {/* Outcome */}
         <section style={{ backgroundColor: 'rgba(58,107,74,0.05)', border: '1px solid rgba(58,107,74,0.15)', borderRadius: '2px', padding: '24px' }}>
-          <span style={sectionLabel('Outcome', 'var(--evidence-green)')}>Outcome</span>
+          <span style={sectionLabel('var(--evidence-green)')}>Outcome</span>
           <p style={{ fontFamily: 'var(--type-mono)', fontSize: '14px', fontWeight: 500, color: 'var(--evidence-green)', lineHeight: 1.6 }}>✓ {c.outcome}</p>
         </section>
-
-        {/* Learnings */}
         {c.learnings && c.learnings.length > 0 && (
           <section>
-            <span style={sectionLabel('Learnings')}>Learnings</span>
+            <span style={sectionLabel()}>Learnings</span>
             <ul style={{ paddingLeft: '0', listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {c.learnings.map((l, i) => (
                 <li key={i} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
