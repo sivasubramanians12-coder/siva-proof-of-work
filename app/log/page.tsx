@@ -1,20 +1,38 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import Link from 'next/link';
 import type { Metadata } from 'next';
+import LogClient from './LogClient';
 
 export const metadata: Metadata = {
   title: "Build Log — Siva's Proof-of-Work",
-  description: 'Chronological daily build log — what was worked on and what was learned.',
+  description: 'Daily build log — tools, decisions, what broke, what worked.',
 };
 
-interface LogEntry {
+export interface LogEntry {
   date: string;
   title: string;
   excerpt: string;
   slug: string;
   content: string;
+  tags: string[];
+}
+
+// Auto-extract tags from content — stack names, tools, key topics
+const KNOWN_TAGS = [
+  'Supabase', 'Next.js', 'FastAPI', 'Flask', 'Pinecone', 'Claude',
+  'ElevenLabs', 'OpenAI', 'Telegram', 'Railway', 'Vercel', 'GitHub',
+  'Playwright', 'Vitest', 'TypeScript', 'Python', 'React', 'shadcn',
+  'RAG', 'RLS', 'Auth', 'Realtime', 'Cascade', 'Webhook',
+  'OpenClaw', 'Groq', 'Gemini', 'Whisper', 'Cal.com', 'Resend',
+  'Airtable', 'Make.com', 'Obsidian', 'Fireflies',
+];
+
+function extractTags(content: string, title: string): string[] {
+  const text = `${title} ${content}`;
+  return KNOWN_TAGS.filter((tag) =>
+    new RegExp(`\\b${tag}\\b`, 'i').test(text)
+  );
 }
 
 function getLogEntries(): LogEntry[] {
@@ -22,214 +40,44 @@ function getLogEntries(): LogEntry[] {
   const files = fs.readdirSync(logDir).filter((f) => f.endsWith('.md'));
 
   const entries = files.map((filename) => {
-    const filePath = path.join(logDir, filename);
-    const raw = fs.readFileSync(filePath, 'utf-8');
+    const raw = fs.readFileSync(path.join(logDir, filename), 'utf-8');
     const { data, content } = matter(raw);
     const slug = filename.replace('.md', '');
-
+    const title = data.title || 'Untitled';
     return {
       date: data.date ? String(data.date) : slug,
-      title: data.title || 'Untitled',
-      excerpt: data.excerpt || content.slice(0, 120) + '…',
+      title,
+      excerpt: data.excerpt || content.slice(0, 160) + '…',
       slug,
       content,
+      tags: extractTags(content, title),
     };
   });
 
-  // Sort descending by date
-  entries.sort((a, b) => (a.date > b.date ? -1 : 1));
-  return entries;
+  // Latest first
+  return entries.sort((a, b) => (a.date > b.date ? -1 : 1));
 }
 
 export default function LogPage() {
   const entries = getLogEntries();
 
-  return (
-    <main
-      style={{
-        maxWidth: '760px',
-        margin: '0 auto',
-        padding: '56px 24px 80px',
-      }}
-    >
-      {/* Header */}
-      <div style={{ marginBottom: '48px' }}>
-        <p
-          style={{
-            fontFamily: 'var(--type-mono)',
-            fontSize: '10px',
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            color: 'var(--signal-amber)',
-            marginBottom: '12px',
-          }}
-        >
-          Daily build log
-        </p>
-        <h1
-          style={{
-            fontFamily: 'var(--type-display)',
-            fontSize: 'clamp(28px, 4vw, 40px)',
-            color: 'var(--ink)',
-            letterSpacing: '-0.01em',
-            marginBottom: '12px',
-          }}
-        >
-          Log
-        </h1>
-        <p
-          style={{
-            fontFamily: 'var(--type-body)',
-            fontSize: '14px',
-            color: 'var(--pencil)',
-            lineHeight: 1.6,
-          }}
-        >
-          Chronological record of what was built, what broke, and what was learned.
-        </p>
-      </div>
+  // Build month list from entries
+  const months = Array.from(
+    new Set(
+      entries.map((e) => {
+        const d = new Date(e.date);
+        return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+      })
+    )
+  ).sort((a, b) => (a > b ? -1 : 1));
 
-      {/* Divider */}
-      <div
-        style={{
-          height: '1px',
-          backgroundColor: 'rgba(26,26,26,0.08)',
-          marginBottom: '48px',
-        }}
-      />
+  // Build tag frequency list (top tags across all entries)
+  const tagCount: Record<string, number> = {};
+  entries.forEach((e) => e.tags.forEach((t) => { tagCount[t] = (tagCount[t] || 0) + 1; }));
+  const topTags = Object.entries(tagCount)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 12)
+    .map(([tag]) => tag);
 
-      {/* Entries */}
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        {entries.map((entry, index) => (
-          <LogEntryRow key={entry.slug} entry={entry} isLast={index === entries.length - 1} />
-        ))}
-      </div>
-
-      {/* Back link */}
-      <div style={{ marginTop: '56px' }}>
-        <Link
-          href="/"
-          style={{
-            fontFamily: 'var(--type-mono)',
-            fontSize: '11px',
-            color: 'var(--pencil)',
-            letterSpacing: '0.06em',
-          }}
-        >
-          ← Back to cases
-        </Link>
-      </div>
-    </main>
-  );
-}
-
-function LogEntryRow({
-  entry,
-  isLast,
-}: {
-  entry: LogEntry;
-  isLast: boolean;
-}) {
-  const dateObj = new Date(entry.date);
-  const displayDate = dateObj.toLocaleDateString('en-GB', {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric',
-  });
-
-  // Parse content paragraphs (skip the h1 line)
-  const paragraphs = entry.content
-    .split('\n')
-    .filter((l) => l.trim() && !l.startsWith('#') && !l.startsWith('---'))
-    .slice(0, 3);
-
-  return (
-    <div
-      style={{
-        paddingBottom: '40px',
-        marginBottom: '40px',
-        borderBottom: isLast ? 'none' : '1px solid rgba(26,26,26,0.06)',
-      }}
-    >
-      {/* Date */}
-      <p
-        style={{
-          fontFamily: 'var(--type-mono)',
-          fontSize: '11px',
-          color: 'var(--pencil)',
-          letterSpacing: '0.06em',
-          marginBottom: '10px',
-        }}
-      >
-        {displayDate}
-      </p>
-
-      {/* Title */}
-      <h2
-        style={{
-          fontFamily: 'var(--type-display)',
-          fontSize: '22px',
-          color: 'var(--ink)',
-          letterSpacing: '-0.01em',
-          marginBottom: '12px',
-        }}
-      >
-        {entry.title}
-      </h2>
-
-      {/* Excerpt */}
-      <p
-        style={{
-          fontFamily: 'var(--type-body)',
-          fontSize: '14px',
-          lineHeight: 1.7,
-          color: 'var(--graphite)',
-          marginBottom: '16px',
-        }}
-      >
-        {entry.excerpt}
-      </p>
-
-      {/* Expanded content */}
-      <details>
-        <summary
-          style={{
-            fontFamily: 'var(--type-mono)',
-            fontSize: '11px',
-            color: 'var(--draft-blue)',
-            cursor: 'pointer',
-            letterSpacing: '0.04em',
-            listStyle: 'none',
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '4px',
-          }}
-        >
-          Read full entry →
-        </summary>
-        <div
-          style={{
-            marginTop: '20px',
-            paddingLeft: '16px',
-            borderLeft: '3px solid var(--signal-amber)',
-          }}
-        >
-          {paragraphs.map((para, i) => (
-            <p
-              key={i}
-              style={{
-                fontFamily: 'var(--type-body)',
-                fontSize: '14px',
-                lineHeight: 1.75,
-                color: 'var(--graphite)',
-                marginBottom: '12px',
-              }}
-            >
-              {para.replace(/\*\*(.*?)\*\*/g, '$1').replace(/`(.*?)`/g, '$1')}
-            </p>
-          ))}
-        </div>
-      </details>
-    </div>
-  );
+  return <LogClient entries={entries} months={months} topTags={topTags} />;
 }
