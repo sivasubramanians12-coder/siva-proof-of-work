@@ -3,7 +3,7 @@ import Hero from '@/components/Hero';
 import CaseCard from '@/components/CaseCard';
 import { fetchCases } from '@/lib/cases';
 
-export const revalidate = 3600; // ISR — rebuild every hour max
+export const dynamic = 'force-dynamic'; // ISR — rebuild every hour max
 
 export default async function Home() {
   const cases = await fetchCases();

@@ -4,7 +4,7 @@ import { fetchCases, fetchCaseBySlug } from '@/lib/cases';
 import type { Domain, Status } from '@/data/cases';
 import type { Metadata } from 'next';
 
-export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 interface PageProps { params: { slug: string }; }
 
