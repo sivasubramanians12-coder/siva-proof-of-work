@@ -3,11 +3,16 @@ const BRANCH = 'main';
 const RAW = `https://raw.githubusercontent.com/${REPO}/${BRANCH}`;
 
 export interface Agent { name: string; role: string; emoji: string; model: string; bound_to: string; description: string; capabilities: string[]; }
+export interface Companion { name: string; type: string; emoji: string; stack: string; bound_to: string; description: string; note: string; }
 export interface Automation { name: string; schedule: string; description: string; output: string; }
 export interface MemoryLayer { layer: string; description: string; location: string; }
 export interface Integration { name: string; use: string; }
 export interface Skill { name: string; agent: string; description: string; }
-export interface StackSetup { lastUpdated: string; tagline: string; agents: Agent[]; automations: Automation[]; memory: MemoryLayer[]; integrations: Integration[]; skills: Skill[]; }
+export interface StackSetup {
+  lastUpdated: string; tagline: string;
+  agents: Agent[]; companions?: Companion[]; automations: Automation[];
+  memory: MemoryLayer[]; integrations: Integration[]; skills: Skill[];
+}
 export interface StackLearning { date: string; title: string; excerpt: string; tags: string[]; content: string; }
 
 export async function fetchStackSetup(): Promise<StackSetup> {
@@ -15,8 +20,6 @@ export async function fetchStackSetup(): Promise<StackSetup> {
   return res.json();
 }
 
-// Known learning files — add dates here as new ones are added
-// The daily wrap cron will update this list automatically in future
 const LEARNING_DATES = ['2026-02-28', '2026-03-01', '2026-03-02'];
 
 export async function fetchStackLearnings(): Promise<StackLearning[]> {

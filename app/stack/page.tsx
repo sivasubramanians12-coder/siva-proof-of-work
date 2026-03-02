@@ -211,6 +211,35 @@ export default async function StackPage() {
           </div>
         </section>
 
+        {/* 01b — Companion Bots */}
+        {setup.companions && setup.companions.length > 0 && (
+          <section style={{ marginBottom: '72px' }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: '12px', marginBottom: '16px' }}>
+              <span style={{ fontFamily: 'var(--type-mono)', fontSize: '10px', color: 'var(--pencil)', letterSpacing: '0.15em', textTransform: 'uppercase' }}>also running</span>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 270px), 1fr))', gap: '12px' }}>
+              {setup.companions.map((c) => (
+                <div key={c.name} style={{
+                  background: 'rgba(255,255,255,0.02)',
+                  border: '1px dashed rgba(245,242,235,0.12)',
+                  borderRadius: '4px',
+                  padding: '24px',
+                  position: 'relative',
+                }}>
+                  <div style={{ fontSize: '24px', marginBottom: '10px' }}>{c.emoji}</div>
+                  <div style={{ fontFamily: 'var(--type-mono)', fontSize: '13px', fontWeight: 600, color: 'var(--paper)', marginBottom: '2px' }}>{c.name}</div>
+                  <div style={{ fontFamily: 'var(--type-mono)', fontSize: '9px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--pencil)', marginBottom: '12px' }}>{c.type}</div>
+                  <p style={{ fontFamily: 'var(--type-body)', fontSize: '13px', lineHeight: 1.65, color: 'rgba(245,242,235,0.5)', marginBottom: '16px' }}>{c.description}</p>
+                  <div style={{ borderTop: '1px solid rgba(245,242,235,0.06)', paddingTop: '12px' }}>
+                    <div style={{ fontFamily: 'var(--type-mono)', fontSize: '10px', color: 'var(--pencil)', marginBottom: '4px' }}>{c.stack}</div>
+                    <div style={{ fontFamily: 'var(--type-mono)', fontSize: '9px', color: 'rgba(245,242,235,0.2)', fontStyle: 'italic' }}>{c.note}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* 02 — Memory */}
         <section style={{ marginBottom: '72px' }}>
           <SectionHeader n="02" label="Memory Architecture" sub="how context persists" />
