@@ -5,7 +5,7 @@ const CASES_URL =
 
 export async function fetchCases(): Promise<Case[]> {
   try {
-    const res = await fetch(CASES_URL, { next: { revalidate: 3600 } });
+    const res = await fetch(CASES_URL, { cache: 'no-store' });
     if (!res.ok) throw new Error(`GitHub fetch failed: ${res.status}`);
     return res.json();
   } catch (err) {
