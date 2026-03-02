@@ -45,7 +45,7 @@ function getLogEntries(): LogEntry[] {
     const slug = filename.replace('.md', '');
     const title = data.title || 'Untitled';
     return {
-      date: data.date ? String(data.date) : slug,
+      date: data.date ? (data.date instanceof Date ? data.date.toISOString().slice(0,10) : String(data.date)) : slug,
       title,
       excerpt: data.excerpt || content.slice(0, 160) + '…',
       slug,
