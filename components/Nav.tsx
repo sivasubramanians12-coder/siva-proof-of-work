@@ -11,7 +11,7 @@ export default function Nav() {
           {[
             { href: '/#cases', label: 'Cases' },
             { href: '/log', label: 'Log' },
-            { href: '/stack', label: 'Stack' },
+            { href: '/stack', label: 'OpenClaw' },
           ].map(({ href, label }) => (
             <Link key={label} href={href} style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--graphite)' }}>
               {label}
