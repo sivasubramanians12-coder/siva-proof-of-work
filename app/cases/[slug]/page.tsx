@@ -20,10 +20,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 const domainStyles: Record<Domain, { bg: string; color: string }> = {
-  OPS: { bg: 'var(--signal-amber-light)', color: 'var(--signal-amber)' },
-  BUILD: { bg: 'var(--draft-blue-light)', color: 'var(--draft-blue)' },
-  OUTCOME: { bg: 'rgba(58,107,74,0.1)', color: 'var(--evidence-green)' },
-  TOOL: { bg: 'rgba(26,26,26,0.06)', color: 'var(--graphite)' },
+  OPS:      { bg: 'var(--signal-amber-light)',    color: 'var(--signal-amber)' },
+  SALES:    { bg: 'var(--signal-amber-light)',    color: 'var(--signal-amber)' },
+  HR:       { bg: 'rgba(58,107,74,0.12)',          color: 'var(--evidence-green)' },
+  RAG:      { bg: 'var(--draft-blue-light)',       color: 'var(--draft-blue)' },
+  COACHING: { bg: 'rgba(184,66,51,0.08)',          color: 'var(--signal-red)' },
+  INFRA:    { bg: 'rgba(26,26,26,0.06)',           color: 'var(--graphite)' },
+  FINANCE:  { bg: 'rgba(58,107,74,0.12)',          color: 'var(--evidence-green)' },
+  BUILD:    { bg: 'var(--draft-blue-light)',       color: 'var(--draft-blue)' },
+  OUTCOME:  { bg: 'rgba(58,107,74,0.1)',           color: 'var(--evidence-green)' },
+  TOOL:     { bg: 'rgba(26,26,26,0.06)',           color: 'var(--graphite)' },
 };
 const statusColors: Record<Status, string> = {
   Live: 'var(--evidence-green)',

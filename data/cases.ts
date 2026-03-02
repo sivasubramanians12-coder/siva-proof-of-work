@@ -1,4 +1,4 @@
-export type Domain = 'OPS' | 'BUILD' | 'OUTCOME' | 'TOOL';
+export type Domain = 'OPS' | 'SALES' | 'HR' | 'RAG' | 'COACHING' | 'INFRA' | 'FINANCE' | 'BUILD' | 'OUTCOME' | 'TOOL';
 export type Status = 'Live' | 'In Progress' | 'Archived';
 
 export interface Metric {
