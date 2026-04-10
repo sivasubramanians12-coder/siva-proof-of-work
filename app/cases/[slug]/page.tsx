@@ -70,45 +70,6 @@ export default async function CasePage({ params }: PageProps) {
 
       <div style={{ height: '1px', backgroundColor: 'rgba(26,26,26,0.08)', marginBottom: '48px' }} />
 
-      {c.screenshots && c.screenshots.length > 0 && (
-        <section style={{ marginBottom: '48px' }}>
-          <span style={sectionLabel('var(--draft-blue)')}>Screens</span>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-            {c.screenshots.map((s, i) => (
-              <figure key={i} style={{ margin: 0 }}>
-                <div style={{
-                  width: '100%',
-                  backgroundColor: 'var(--ink)',
-                  border: '1px solid rgba(26,26,26,0.1)',
-                  borderRadius: '2px',
-                  overflow: 'hidden',
-                }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={s.url}
-                    alt={s.caption || c.title}
-                    style={{ width: '100%', height: 'auto', display: 'block' }}
-                    loading="lazy"
-                  />
-                </div>
-                {s.caption && (
-                  <figcaption style={{
-                    fontFamily: 'var(--type-mono)',
-                    fontSize: '10px',
-                    color: 'var(--pencil)',
-                    letterSpacing: '0.06em',
-                    marginTop: '8px',
-                    textAlign: 'center',
-                  }}>
-                    {s.caption}
-                  </figcaption>
-                )}
-              </figure>
-            ))}
-          </div>
-        </section>
-      )}
-
       <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
         {c.metrics && c.metrics.length > 0 && (
           <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '24px', padding: '32px', backgroundColor: 'var(--paper-warm)', borderRadius: '2px', border: '1px solid rgba(26,26,26,0.06)' }}>

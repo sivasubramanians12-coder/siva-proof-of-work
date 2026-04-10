@@ -9,7 +9,6 @@ export const metadata: Metadata = {
   description: 'Command Center: the orchestration platform that runs a 7-agent team on a Mac Mini. Next.js 15, LaunchAgent, Tailscale-accessible. Drives every pipeline across the team.',
 };
 
-const RAW_SS = 'https://raw.githubusercontent.com/sivasubramanians12-coder/siva-builds/main/projects/screenshots';
 
 export default async function StackPage() {
   const [setup, learnings] = await Promise.all([fetchStackSetup(), fetchStackLearnings()]);
@@ -107,47 +106,7 @@ export default async function StackPage() {
             Coffee, Coder, Picasso, TodoBot, MarketerBot and HealthBot.
           </p>
 
-          {/* Command Center Screenshot Row */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
-            gap: '12px',
-            marginBottom: '56px',
-            maxWidth: '1000px',
-          }}>
-            {[
-              { src: `${RAW_SS}/command-center-orchestration.png`, label: 'Dashboard' },
-              { src: `${RAW_SS}/command-center-orchestrate.png`, label: 'Orchestrate' },
-              { src: `${RAW_SS}/command-center-files.png`, label: 'Files' },
-            ].map((s) => (
-              <figure key={s.label} style={{
-                margin: 0,
-                border: '1px solid rgba(245,242,235,0.1)',
-                borderRadius: '2px',
-                overflow: 'hidden',
-                backgroundColor: 'rgba(245,242,235,0.02)',
-              }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={s.src}
-                  alt={`Command Center — ${s.label}`}
-                  style={{ width: '100%', height: 'auto', display: 'block' }}
-                  loading="lazy"
-                />
-                <figcaption style={{
-                  fontFamily: 'var(--type-mono)',
-                  fontSize: '9px',
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  color: 'rgba(245,242,235,0.4)',
-                  padding: '8px 12px',
-                  borderTop: '1px solid rgba(245,242,235,0.06)',
-                }}>
-                  {s.label}
-                </figcaption>
-              </figure>
-            ))}
-          </div>
+
 
           {/* Stats strip */}
           <div style={{
