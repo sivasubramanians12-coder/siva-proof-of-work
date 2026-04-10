@@ -7,6 +7,11 @@ export interface Metric {
   delta?: string;
 }
 
+export interface Screenshot {
+  url: string;
+  caption?: string;
+}
+
 export interface Case {
   slug: string;
   title: string;
@@ -25,6 +30,7 @@ export interface Case {
   metrics?: Metric[];
   date?: string;
   industry?: string;
+  screenshots?: Screenshot[];
 }
 
 export const cases: Case[] = [

@@ -5,9 +5,11 @@ import { fetchStackSetup, fetchStackLearnings } from '@/lib/stack';
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: "OpenClaw — Siva's Proof-of-Work",
-  description: 'How I use OpenClaw — 7 agents, Command Center orchestration, live automations, memory architecture, and what I learn building a personal AI OS.',
+  title: "OpenClaw Command Center — Siva's Proof-of-Work",
+  description: 'Command Center: the orchestration platform that runs a 7-agent team on a Mac Mini. Next.js 15, LaunchAgent, Tailscale-accessible. Drives every pipeline across the team.',
 };
+
+const RAW_SS = 'https://raw.githubusercontent.com/sivasubramanians12-coder/siva-builds/main/projects/screenshots';
 
 export default async function StackPage() {
   const [setup, learnings] = await Promise.all([fetchStackSetup(), fetchStackLearnings()]);
@@ -58,34 +60,35 @@ export default async function StackPage() {
             gap: '12px',
           }}>
             <span style={{ width: '24px', height: '1px', backgroundColor: 'var(--signal-amber)', display: 'inline-block' }} />
-            OpenClaw · Personal AI OS
+            OpenClaw · Command Center
           </p>
 
           {/* Status badge */}
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: '8px',
-            backgroundColor: 'rgba(196,132,29,0.1)',
-            border: '1px solid rgba(196,132,29,0.25)',
+            backgroundColor: 'rgba(45,95,138,0.12)',
+            border: '1px solid rgba(45,95,138,0.3)',
             borderRadius: '2px', padding: '5px 12px', marginBottom: '32px',
           }}>
             <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--evidence-green)', display: 'inline-block' }} />
-            <span style={{ fontFamily: 'var(--type-mono)', fontSize: '10px', color: 'rgba(245,242,235,0.6)', letterSpacing: '0.1em' }}>
-              7 agents running
+            <span style={{ fontFamily: 'var(--type-mono)', fontSize: '10px', color: 'rgba(245,242,235,0.75)', letterSpacing: '0.1em' }}>
+              v4 · 7 agents orchestrated · running on Mac Mini
             </span>
           </div>
 
           {/* Headline */}
-          <div style={{ maxWidth: '820px', marginBottom: '24px' }}>
+          <div style={{ maxWidth: '860px', marginBottom: '24px' }}>
             <h1 style={{
               fontFamily: 'var(--type-display)',
               fontSize: 'clamp(36px, 5.5vw, 72px)',
-              lineHeight: 1.08,
+              lineHeight: 1.06,
               color: 'var(--paper)',
               letterSpacing: '-0.02em',
               marginBottom: '0',
             }}>
-              Building a personal{' '}
-              <em style={{ color: 'var(--signal-amber)', fontStyle: 'italic' }}>AI operating system</em>
+              One{' '}
+              <em style={{ color: 'var(--signal-amber)', fontStyle: 'italic' }}>Command Center</em>
+              {' '}for a 7-agent AI team
             </h1>
           </div>
 
@@ -95,12 +98,56 @@ export default async function StackPage() {
             fontSize: 'clamp(15px, 1.5vw, 17px)',
             lineHeight: 1.7,
             color: 'rgba(245,242,235,0.65)',
-            maxWidth: '580px',
-            marginBottom: '56px',
+            maxWidth: '640px',
+            marginBottom: '48px',
           }}>
-            Not a product demo. Not a tutorial. A live system I use every day to run a 120-person
-            business, build software, and compound learning — with OpenClaw as the runtime.
+            Next.js 15 orchestration platform running on a Mac Mini. Six blueprint pipelines,
+            review gates routed to Telegram, cost intelligence per agent, guardrails, SSE live
+            logs. 115+ commits in March to v4. Drives every multi-phase build across BarleyBot,
+            Coffee, Coder, Picasso, TodoBot, MarketerBot and HealthBot.
           </p>
+
+          {/* Command Center Screenshot Row */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
+            gap: '12px',
+            marginBottom: '56px',
+            maxWidth: '1000px',
+          }}>
+            {[
+              { src: `${RAW_SS}/command-center-orchestration.png`, label: 'Dashboard' },
+              { src: `${RAW_SS}/command-center-orchestrate.png`, label: 'Orchestrate' },
+              { src: `${RAW_SS}/command-center-files.png`, label: 'Files' },
+            ].map((s) => (
+              <figure key={s.label} style={{
+                margin: 0,
+                border: '1px solid rgba(245,242,235,0.1)',
+                borderRadius: '2px',
+                overflow: 'hidden',
+                backgroundColor: 'rgba(245,242,235,0.02)',
+              }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={s.src}
+                  alt={`Command Center — ${s.label}`}
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
+                  loading="lazy"
+                />
+                <figcaption style={{
+                  fontFamily: 'var(--type-mono)',
+                  fontSize: '9px',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  color: 'rgba(245,242,235,0.4)',
+                  padding: '8px 12px',
+                  borderTop: '1px solid rgba(245,242,235,0.06)',
+                }}>
+                  {s.label}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
 
           {/* Stats strip */}
           <div style={{
@@ -110,10 +157,10 @@ export default async function StackPage() {
             flexWrap: 'wrap',
           }}>
             {[
-              { value: '7', label: 'Agents active' },
-              { value: '7', label: 'Crons running' },
-              { value: '1', label: 'Command Center' },
-              { value: 'Live', label: 'Production use' },
+              { value: '6', label: 'Blueprints' },
+              { value: '115+', label: 'March commits' },
+              { value: '7', label: 'Agents orchestrated' },
+              { value: 'Live', label: 'Mac Mini / LaunchAgent' },
             ].map((stat, i) => (
               <div key={stat.label} style={{
                 flex: '1 1 140px',
@@ -169,52 +216,10 @@ export default async function StackPage() {
       {/* Content */}
       <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '72px 24px 80px' }}>
 
-        {/* 01 — Agents */}
-        <section style={{ marginBottom: '72px' }}>
-          <SectionHeader n="01" label="Agents" sub="who does what" />
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 340px), 1fr))', gap: '16px' }}>
-            {setup.agents.map((a) => (
-              /* Ink card — same pattern as featured case on homepage */
-              <div key={a.name} style={{
-                backgroundColor: 'var(--ink)',
-                backgroundImage: 'linear-gradient(rgba(196,132,29,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(196,132,29,0.05) 1px, transparent 1px)',
-                backgroundSize: '20px 20px',
-                borderRadius: '2px', overflow: 'hidden', position: 'relative',
-              }}>
-                <div style={{ position: 'absolute', top: 0, right: 0, width: '50%', height: '100%', background: 'radial-gradient(ellipse at top right, rgba(196,132,29,0.1) 0%, transparent 70%)', pointerEvents: 'none' }} />
-                <div style={{ padding: '32px 40px', position: 'relative' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px', flexWrap: 'wrap' }}>
-                    <span style={{ fontFamily: 'var(--type-mono)', fontSize: '9px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--signal-amber)', backgroundColor: 'rgba(196,132,29,0.15)', padding: '3px 8px', borderRadius: '2px' }}>{a.role}</span>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '5px', fontFamily: 'var(--type-mono)', fontSize: '10px', color: 'rgba(245,242,235,0.4)' }}>
-                      <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: 'var(--evidence-green)', display: 'inline-block' }} />
-                      active
-                    </span>
-                  </div>
-                  <div style={{ fontSize: '28px', marginBottom: '10px' }}>{a.emoji}</div>
-                  <h3 style={{ fontFamily: 'var(--type-display)', fontSize: 'clamp(22px, 2.5vw, 30px)', lineHeight: 1.1, color: 'var(--paper)', letterSpacing: '-0.02em', marginBottom: '12px' }}>{a.name}</h3>
-                  <p style={{ fontFamily: 'var(--type-body)', fontSize: '14px', lineHeight: 1.7, color: 'rgba(245,242,235,0.6)', marginBottom: '20px' }}>{a.description}</p>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '20px' }}>
-                    {a.capabilities.map((c) => (
-                      <div key={c} style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
-                        <span style={{ fontFamily: 'var(--type-mono)', color: 'var(--draft-blue)', fontSize: '10px', marginTop: '2px', flexShrink: 0 }}>›</span>
-                        <span style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', color: 'rgba(245,242,235,0.5)' }}>{c}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid rgba(245,242,235,0.06)', paddingTop: '16px' }}>
-                    <span style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', color: 'var(--evidence-green)', fontWeight: 500 }}>✓ {a.bound_to}</span>
-                    <span style={{ fontFamily: 'var(--type-mono)', fontSize: '9px', color: 'rgba(245,242,235,0.25)', letterSpacing: '0.06em' }}>{a.model}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* 01a — Command Center */}
+        {/* 01 — Command Center Deep Dive */}
         {setup.command_center && (
           <section style={{ marginBottom: '72px' }}>
-            <SectionHeader n="01a" label="Command Center" sub="the orchestration platform on top" />
+            <SectionHeader n="01" label="Command Center — Deep Dive" sub="what it does, why it exists" />
             <div style={{
               backgroundColor: 'var(--ink)',
               backgroundImage: 'linear-gradient(rgba(45,95,138,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(45,95,138,0.08) 1px, transparent 1px)',
@@ -255,6 +260,48 @@ export default async function StackPage() {
             </div>
           </section>
         )}
+
+        {/* 02 — Agents */}
+        <section style={{ marginBottom: '72px' }}>
+          <SectionHeader n="02" label="The Agent Team" sub="who Command Center orchestrates" />
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 340px), 1fr))', gap: '16px' }}>
+            {setup.agents.map((a) => (
+              /* Ink card — same pattern as featured case on homepage */
+              <div key={a.name} style={{
+                backgroundColor: 'var(--ink)',
+                backgroundImage: 'linear-gradient(rgba(196,132,29,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(196,132,29,0.05) 1px, transparent 1px)',
+                backgroundSize: '20px 20px',
+                borderRadius: '2px', overflow: 'hidden', position: 'relative',
+              }}>
+                <div style={{ position: 'absolute', top: 0, right: 0, width: '50%', height: '100%', background: 'radial-gradient(ellipse at top right, rgba(196,132,29,0.1) 0%, transparent 70%)', pointerEvents: 'none' }} />
+                <div style={{ padding: '32px 40px', position: 'relative' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px', flexWrap: 'wrap' }}>
+                    <span style={{ fontFamily: 'var(--type-mono)', fontSize: '9px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--signal-amber)', backgroundColor: 'rgba(196,132,29,0.15)', padding: '3px 8px', borderRadius: '2px' }}>{a.role}</span>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '5px', fontFamily: 'var(--type-mono)', fontSize: '10px', color: 'rgba(245,242,235,0.4)' }}>
+                      <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: 'var(--evidence-green)', display: 'inline-block' }} />
+                      active
+                    </span>
+                  </div>
+                  <div style={{ fontSize: '28px', marginBottom: '10px' }}>{a.emoji}</div>
+                  <h3 style={{ fontFamily: 'var(--type-display)', fontSize: 'clamp(22px, 2.5vw, 30px)', lineHeight: 1.1, color: 'var(--paper)', letterSpacing: '-0.02em', marginBottom: '12px' }}>{a.name}</h3>
+                  <p style={{ fontFamily: 'var(--type-body)', fontSize: '14px', lineHeight: 1.7, color: 'rgba(245,242,235,0.6)', marginBottom: '20px' }}>{a.description}</p>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '20px' }}>
+                    {a.capabilities.map((c) => (
+                      <div key={c} style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                        <span style={{ fontFamily: 'var(--type-mono)', color: 'var(--draft-blue)', fontSize: '10px', marginTop: '2px', flexShrink: 0 }}>›</span>
+                        <span style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', color: 'rgba(245,242,235,0.5)' }}>{c}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid rgba(245,242,235,0.06)', paddingTop: '16px' }}>
+                    <span style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', color: 'var(--evidence-green)', fontWeight: 500 }}>✓ {a.bound_to}</span>
+                    <span style={{ fontFamily: 'var(--type-mono)', fontSize: '9px', color: 'rgba(245,242,235,0.25)', letterSpacing: '0.06em' }}>{a.model}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
 
         {/* 01b — Companion Bots */}
         {setup.companions && setup.companions.length > 0 && (

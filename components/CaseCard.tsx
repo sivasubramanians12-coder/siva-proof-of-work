@@ -25,9 +25,10 @@ interface CaseCardProps {
 }
 
 export default function CaseCard({ caseData }: CaseCardProps) {
-  const { slug, title, domain, status, excerpt, outcome, stack } = caseData;
+  const { slug, title, domain, status, excerpt, outcome, stack, screenshots } = caseData;
   const dStyle = domainStyles[domain];
   const statusColor = statusColors[status];
+  const primaryShot = screenshots?.[0];
 
   return (
     <article
@@ -41,6 +42,27 @@ export default function CaseCard({ caseData }: CaseCardProps) {
         gap: '20px',
       }}
     >
+      {/* Screenshot thumbnail */}
+      {primaryShot && (
+        <Link href={`/cases/${slug}`} style={{ display: 'block', margin: '-28px -28px 0 -28px' }}>
+          <div style={{
+            width: '100%',
+            aspectRatio: '16/9',
+            overflow: 'hidden',
+            backgroundColor: 'var(--ink)',
+            borderBottom: '1px solid rgba(26,26,26,0.08)',
+          }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={primaryShot.url}
+              alt={primaryShot.caption || title}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }}
+              loading="lazy"
+            />
+          </div>
+        </Link>
+      )}
+
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', justifyContent: 'space-between' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
