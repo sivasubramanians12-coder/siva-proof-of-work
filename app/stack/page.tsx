@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: "OpenClaw — Siva's Proof-of-Work",
-  description: 'How I use OpenClaw — 3 agents, live automations, memory architecture, and what I learn building a personal AI OS.',
+  description: 'How I use OpenClaw — 7 agents, Command Center orchestration, live automations, memory architecture, and what I learn building a personal AI OS.',
 };
 
 export default async function StackPage() {
@@ -70,7 +70,7 @@ export default async function StackPage() {
           }}>
             <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--evidence-green)', display: 'inline-block' }} />
             <span style={{ fontFamily: 'var(--type-mono)', fontSize: '10px', color: 'rgba(245,242,235,0.6)', letterSpacing: '0.1em' }}>
-              3 agents running
+              7 agents running
             </span>
           </div>
 
@@ -110,9 +110,9 @@ export default async function StackPage() {
             flexWrap: 'wrap',
           }}>
             {[
-              { value: '3', label: 'Agents active' },
-              { value: '4', label: 'Crons running' },
-              { value: 'Daily', label: 'Compounding' },
+              { value: '7', label: 'Agents active' },
+              { value: '7', label: 'Crons running' },
+              { value: '1', label: 'Command Center' },
               { value: 'Live', label: 'Production use' },
             ].map((stat, i) => (
               <div key={stat.label} style={{
@@ -149,9 +149,9 @@ export default async function StackPage() {
             </p>
             <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
               {[
-                { label: '3 agents active', color: 'var(--evidence-green)' },
-                { label: '4 crons', color: 'var(--signal-amber)' },
-                { label: 'live', color: 'var(--draft-blue)' },
+                { label: '7 agents active', color: 'var(--evidence-green)' },
+                { label: '7 crons', color: 'var(--signal-amber)' },
+                { label: 'command center live', color: 'var(--draft-blue)' },
               ].map((s) => (
                 <div key={s.label} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                   <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: s.color, display: 'inline-block' }} />
@@ -210,6 +210,51 @@ export default async function StackPage() {
             ))}
           </div>
         </section>
+
+        {/* 01a — Command Center */}
+        {setup.command_center && (
+          <section style={{ marginBottom: '72px' }}>
+            <SectionHeader n="01a" label="Command Center" sub="the orchestration platform on top" />
+            <div style={{
+              backgroundColor: 'var(--ink)',
+              backgroundImage: 'linear-gradient(rgba(45,95,138,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(45,95,138,0.08) 1px, transparent 1px)',
+              backgroundSize: '24px 24px',
+              border: '1px solid rgba(45,95,138,0.3)',
+              borderRadius: '2px',
+              overflow: 'hidden',
+              position: 'relative',
+            }}>
+              <div style={{ position: 'absolute', top: 0, right: 0, width: '55%', height: '100%', background: 'radial-gradient(ellipse at top right, rgba(45,95,138,0.15) 0%, transparent 70%)', pointerEvents: 'none' }} />
+              <div style={{ padding: '40px 44px', position: 'relative' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '18px', flexWrap: 'wrap' }}>
+                  <span style={{ fontFamily: 'var(--type-mono)', fontSize: '9px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--draft-blue)', backgroundColor: 'rgba(45,95,138,0.15)', padding: '3px 8px', borderRadius: '2px' }}>Orchestration Platform</span>
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '5px', fontFamily: 'var(--type-mono)', fontSize: '10px', color: 'rgba(245,242,235,0.4)' }}>
+                    <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: 'var(--evidence-green)', display: 'inline-block' }} />
+                    live
+                  </span>
+                </div>
+                <h3 style={{ fontFamily: 'var(--type-display)', fontSize: 'clamp(26px, 3vw, 38px)', lineHeight: 1.1, color: 'var(--paper)', letterSpacing: '-0.02em', marginBottom: '14px' }}>
+                  {setup.command_center.name}
+                </h3>
+                <p style={{ fontFamily: 'var(--type-body)', fontSize: '15px', lineHeight: 1.7, color: 'rgba(245,242,235,0.7)', marginBottom: '24px', maxWidth: '700px' }}>
+                  {setup.command_center.description}
+                </p>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: '10px', marginBottom: '24px' }}>
+                  {setup.command_center.features.map((f) => (
+                    <div key={f} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
+                      <span style={{ fontFamily: 'var(--type-mono)', color: 'var(--signal-amber)', fontSize: '11px', marginTop: '2px', flexShrink: 0 }}>›</span>
+                      <span style={{ fontFamily: 'var(--type-mono)', fontSize: '12px', color: 'rgba(245,242,235,0.55)', lineHeight: 1.55 }}>{f}</span>
+                    </div>
+                  ))}
+                </div>
+                <div style={{ borderTop: '1px solid rgba(245,242,235,0.08)', paddingTop: '16px', display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', color: 'var(--evidence-green)' }}>✓ {setup.command_center.status}</span>
+                  <span style={{ fontFamily: 'var(--type-mono)', fontSize: '10px', color: 'rgba(245,242,235,0.3)' }}>{setup.command_center.stack}</span>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* 01b — Companion Bots */}
         {setup.companions && setup.companions.length > 0 && (

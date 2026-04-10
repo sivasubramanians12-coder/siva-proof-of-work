@@ -8,10 +8,12 @@ export interface Automation { name: string; schedule: string; description: strin
 export interface MemoryLayer { layer: string; description: string; location: string; }
 export interface Integration { name: string; use: string; }
 export interface Skill { name: string; agent: string; description: string; }
+export interface CommandCenter { name: string; tagline: string; url: string; stack: string; description: string; features: string[]; status: string; }
 export interface StackSetup {
   lastUpdated: string; tagline: string;
   agents: Agent[]; companions?: Companion[]; automations: Automation[];
   memory: MemoryLayer[]; integrations: Integration[]; skills: Skill[];
+  command_center?: CommandCenter;
 }
 export interface StackLearning { date: string; title: string; excerpt: string; tags: string[]; content: string; }
 
