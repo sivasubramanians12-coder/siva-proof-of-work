@@ -27,12 +27,12 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Siva's Proof-of-Work Ledger",
+  title: 'Siva Subramanian - Proof-of-Work Ledger',
   description:
-    'Country Head, Hunter Douglas India. Building AI systems to solve the operational problems I live with every day.',
+    'Operator-builder documenting AI systems built against real business problems.',
   openGraph: {
-    title: "Siva's Proof-of-Work Ledger",
-    description: 'The business leader who builds.',
+    title: 'Siva Subramanian - Proof-of-Work Ledger',
+    description: 'Real operating problems, shipped AI systems, documented learning.',
     type: 'website',
   },
 };

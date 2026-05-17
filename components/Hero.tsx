@@ -48,7 +48,7 @@ export default function Hero() {
           gap: '12px',
         }}>
           <span style={{ width: '24px', height: '1px', backgroundColor: 'var(--signal-amber)', display: 'inline-block' }} />
-          Proof-of-Work Ledger
+          Operator&apos;s Proof-of-Work Ledger
         </p>
 
         {/* Main headline — problem-first */}
@@ -61,11 +61,7 @@ export default function Hero() {
             letterSpacing: '-0.02em',
             marginBottom: '0',
           }}>
-            The gap between{' '}
-            <em style={{ color: 'var(--signal-amber)', fontStyle: 'italic' }}>knowing</em>{' '}
-            and{' '}
-            <em style={{ color: 'var(--signal-amber)', fontStyle: 'italic' }}>doing</em>{' '}
-            is a systems problem.
+            I build the systems I wish existed while running the business.
           </h1>
         </div>
 
@@ -78,8 +74,9 @@ export default function Hero() {
           maxWidth: '580px',
           marginBottom: '56px',
         }}>
-          14 years running operations at AB InBev, Diageo, Nike, and Hunter Douglas India —
-          now building the AI systems I wished existed while doing those jobs.
+          A business leader with a computer science spine: turning live operating
+          problems into AI workflows, decision systems, and proof that survives
+          outside the demo.
         </p>
 
         {/* Evidence strip */}
@@ -92,10 +89,10 @@ export default function Hero() {
           flexWrap: 'wrap',
         }}>
           {[
-            { value: '5', label: 'Systems in production' },
-            { value: '120', label: 'Person company, live context' },
+            { value: 'Live', label: 'Operating context' },
+            { value: '7', label: 'Agent team' },
             { value: '14yr', label: 'Business operations' },
-            { value: 'Daily', label: 'Compounding' },
+            { value: 'Daily', label: 'Proof logged' },
           ].map((stat, i) => (
             <div key={stat.label} style={{
               flex: '1 1 140px',
@@ -138,7 +135,7 @@ export default function Hero() {
             color: 'rgba(245,242,235,0.35)',
             letterSpacing: '0.06em',
           }}>
-            Siva Subramanian — Country Head, Hunter Douglas India
+            Siva Subramanian — operator, builder, Country Head
           </p>
           <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
             {['BUILD', 'MEASURE', 'PROVE'].map((word, i) => (

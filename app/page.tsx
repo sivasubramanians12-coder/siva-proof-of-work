@@ -21,12 +21,20 @@ export default async function Home() {
         <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: '48px', flexWrap: 'wrap', gap: '12px' }}>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: '16px' }}>
             <span style={{ fontFamily: 'var(--type-mono)', fontSize: '10px', color: 'var(--signal-amber)', letterSpacing: '0.15em', textTransform: 'uppercase' }}>01</span>
-            <h2 style={{ fontFamily: 'var(--type-display)', fontSize: 'clamp(24px, 3vw, 36px)', color: 'var(--ink)', letterSpacing: '-0.01em' }}>Cases</h2>
-            <span style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', color: 'var(--pencil)', letterSpacing: '0.06em' }}>{cases.length} documented</span>
+            <h2 style={{ fontFamily: 'var(--type-display)', fontSize: 'clamp(24px, 3vw, 36px)', color: 'var(--ink)', letterSpacing: '-0.01em' }}>Operating Cases</h2>
+            <span style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', color: 'var(--pencil)', letterSpacing: '0.06em' }}>{cases.length} proofs</span>
           </div>
           <Link href="/log" style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', color: 'var(--draft-blue)', letterSpacing: '0.06em', borderBottom: '1px solid var(--draft-blue)', paddingBottom: '1px' }}>
-            Build log →
+            Build log {'->'}
           </Link>
+        </div>
+
+        <div style={{ marginBottom: '32px', maxWidth: '720px' }}>
+          <p style={{ fontFamily: 'var(--type-body)', fontSize: '16px', lineHeight: 1.75, color: 'var(--graphite)' }}>
+            These are not portfolio mockups. Each case starts with an operational constraint:
+            slow visibility, scattered context, lost follow-up, expert knowledge trapped in files.
+            The useful question is always the same: what system would make the next decision faster and cleaner?
+          </p>
         </div>
 
         {/* Featured */}
@@ -46,7 +54,7 @@ export default async function Home() {
               <p style={{ fontFamily: 'var(--type-body)', fontSize: '15px', lineHeight: 1.7, color: 'rgba(245,242,235,0.6)', maxWidth: '560px', marginBottom: '28px' }}>{featured.excerpt}</p>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
                 <span style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', color: 'var(--evidence-green)', fontWeight: 500 }}>✓ {featured.outcome}</span>
-                <span style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', color: 'var(--signal-amber)', letterSpacing: '0.06em', borderBottom: '1px solid rgba(196,132,29,0.4)', paddingBottom: '1px' }}>Read case →</span>
+                <span style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', color: 'var(--signal-amber)', letterSpacing: '0.06em', borderBottom: '1px solid rgba(196,132,29,0.4)', paddingBottom: '1px' }}>Read case {'->'}</span>
               </div>
             </div>
           </div>
@@ -62,11 +70,11 @@ export default async function Home() {
         <div style={{ display: 'flex', alignItems: 'baseline', gap: '16px', marginBottom: '24px' }}>
           <span style={{ fontFamily: 'var(--type-mono)', fontSize: '10px', color: 'var(--signal-amber)', letterSpacing: '0.15em', textTransform: 'uppercase' }}>02</span>
           <h2 style={{ fontFamily: 'var(--type-display)', fontSize: 'clamp(24px, 3vw, 36px)', color: 'var(--ink)', letterSpacing: '-0.01em' }}>Build Log</h2>
-          <span style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', color: 'var(--pencil)', letterSpacing: '0.06em' }}>tools, decisions, what broke</span>
+          <span style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', color: 'var(--pencil)', letterSpacing: '0.06em' }}>what shipped, what broke, what changed</span>
         </div>
         <div style={{ backgroundColor: 'var(--paper-warm)', border: '1px solid rgba(26,26,26,0.06)', borderRadius: '2px', padding: '28px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
-          <p style={{ fontFamily: 'var(--type-body)', fontSize: '14px', color: 'var(--graphite)', lineHeight: 1.6, maxWidth: '500px' }}>Implementation notes, benchmark results, integration gotchas. The tools-and-tech counterpart to the cases above.</p>
-          <Link href="/log" style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', color: 'var(--ink)', letterSpacing: '0.06em', border: '1px solid rgba(26,26,26,0.15)', borderRadius: '2px', padding: '8px 16px', whiteSpace: 'nowrap' }}>View log →</Link>
+          <p style={{ fontFamily: 'var(--type-body)', fontSize: '14px', color: 'var(--graphite)', lineHeight: 1.6, maxWidth: '560px' }}>A daily record of shipped work, failed assumptions, infrastructure fixes, and the small decisions that make the larger system compound.</p>
+          <Link href="/log" style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', color: 'var(--ink)', letterSpacing: '0.06em', border: '1px solid rgba(26,26,26,0.15)', borderRadius: '2px', padding: '8px 16px', whiteSpace: 'nowrap' }}>View log {'->'}</Link>
         </div>
       </section>
     </main>
