@@ -24,16 +24,27 @@ export default async function Home() {
             <h2 style={{ fontFamily: 'var(--type-display)', fontSize: 'clamp(24px, 3vw, 36px)', color: 'var(--ink)', letterSpacing: '-0.01em' }}>Operating Cases</h2>
             <span style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', color: 'var(--pencil)', letterSpacing: '0.06em' }}>{cases.length} proofs</span>
           </div>
-          <Link href="/log" style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', color: 'var(--draft-blue)', letterSpacing: '0.06em', borderBottom: '1px solid var(--draft-blue)', paddingBottom: '1px' }}>
-            Build log {'->'}
+          <Link href="/learnings" style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', color: 'var(--draft-blue)', letterSpacing: '0.06em', borderBottom: '1px solid var(--draft-blue)', paddingBottom: '1px' }}>
+            Read learnings {'->'}
           </Link>
         </div>
 
         <div style={{ marginBottom: '32px', maxWidth: '720px' }}>
+          <p style={{ fontFamily: 'var(--type-body)', fontSize: '18px', lineHeight: 1.65, color: 'var(--ink)', marginBottom: '14px' }}>
+            Real systems built against real operating constraints.
+          </p>
           <p style={{ fontFamily: 'var(--type-body)', fontSize: '16px', lineHeight: 1.75, color: 'var(--graphite)' }}>
-            These are not portfolio mockups. Each case starts with an operational constraint:
-            slow visibility, scattered context, lost follow-up, expert knowledge trapped in files.
-            The useful question is always the same: what system would make the next decision faster and cleaner?
+            These are not portfolio mockups. Each case starts with a business or workflow problem:
+            slow visibility, broken handoffs, scattered context, manual follow-up, trapped expertise,
+            or unclear ownership. The useful question is not whether the stack sounds impressive.
+            It is whether the workflow got cleaner after the system went live.
+          </p>
+        </div>
+
+        <div style={{ backgroundColor: 'var(--ink)', color: 'var(--paper)', borderRadius: '8px', padding: '24px', marginBottom: '32px', borderLeft: '8px solid var(--signal-amber)' }}>
+          <p style={{ fontFamily: 'var(--type-mono)', fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--signal-amber)', marginBottom: '10px' }}>case standard</p>
+          <p style={{ fontFamily: 'var(--type-display)', fontSize: '30px', lineHeight: 1.1, color: 'var(--paper)' }}>
+            What was broken, what changed, what proof exists, and what lesson was worth keeping.
           </p>
         </div>
 
@@ -66,7 +77,18 @@ export default async function Home() {
                 <span style={{ fontFamily: 'var(--type-mono)', fontSize: '10px', color: 'rgba(245,242,235,0.25)', marginLeft: 'auto' }}>Featured</span>
               </div>
               <h3 style={{ fontFamily: 'var(--type-display)', fontSize: 'clamp(24px, 3vw, 40px)', lineHeight: 1.1, color: 'var(--paper)', letterSpacing: '-0.02em', marginBottom: '16px', maxWidth: '600px' }}>{featured.title}</h3>
-              <p style={{ fontFamily: 'var(--type-body)', fontSize: '15px', lineHeight: 1.7, color: 'rgba(245,242,235,0.6)', maxWidth: '560px', marginBottom: '28px' }}>{featured.excerpt}</p>
+              <div style={{ display: 'grid', gap: '14px', marginBottom: '28px', maxWidth: '620px' }}>
+                {[
+                  ['Problem', featured.problem],
+                  ['System', featured.built],
+                  ['Proof', featured.outcome],
+                ].map(([label, copy]) => (
+                  <div key={label} style={{ borderLeft: `3px solid ${label === 'Proof' ? 'var(--evidence-green)' : label === 'System' ? 'var(--draft-blue)' : 'var(--signal-amber)'}`, paddingLeft: '14px' }}>
+                    <p style={{ fontFamily: 'var(--type-mono)', fontSize: '9px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(245,242,235,0.42)', marginBottom: '4px' }}>{label}</p>
+                    <p style={{ fontFamily: 'var(--type-body)', fontSize: '14px', lineHeight: 1.6, color: 'rgba(245,242,235,0.7)' }}>{copy}</p>
+                  </div>
+                ))}
+              </div>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
                 <span style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', color: 'var(--evidence-green)', fontWeight: 500 }}>✓ {featured.outcome}</span>
                 <span style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', color: 'var(--signal-amber)', letterSpacing: '0.06em', borderBottom: '1px solid rgba(196,132,29,0.4)', paddingBottom: '1px' }}>Read case {'->'}</span>
@@ -85,10 +107,10 @@ export default async function Home() {
         <div style={{ display: 'flex', alignItems: 'baseline', gap: '16px', marginBottom: '24px' }}>
           <span style={{ fontFamily: 'var(--type-mono)', fontSize: '10px', color: 'var(--signal-amber)', letterSpacing: '0.15em', textTransform: 'uppercase' }}>02</span>
           <h2 style={{ fontFamily: 'var(--type-display)', fontSize: 'clamp(24px, 3vw, 36px)', color: 'var(--ink)', letterSpacing: '-0.01em' }}>Build Log</h2>
-          <span style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', color: 'var(--pencil)', letterSpacing: '0.06em' }}>what shipped, what broke, what changed</span>
+          <span style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', color: 'var(--pencil)', letterSpacing: '0.06em' }}>what shipped, what changed, what was learned</span>
         </div>
-        <div style={{ backgroundColor: 'var(--paper-warm)', border: '1px solid rgba(26,26,26,0.06)', borderRadius: '2px', padding: '28px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
-          <p style={{ fontFamily: 'var(--type-body)', fontSize: '14px', color: 'var(--graphite)', lineHeight: 1.6, maxWidth: '560px' }}>A daily record of shipped work, failed assumptions, infrastructure fixes, and the small decisions that make the larger system compound.</p>
+        <div style={{ backgroundColor: 'var(--paper-warm)', border: '1px solid rgba(26,26,26,0.06)', borderRadius: '8px', padding: '28px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
+          <p style={{ fontFamily: 'var(--type-body)', fontSize: '14px', color: 'var(--graphite)', lineHeight: 1.6, maxWidth: '620px' }}>A dated ledger of what shipped, what changed, and what was learned. Useful because it captures sequence, decisions, and change over time. Not the main teaching surface.</p>
           <Link href="/log" style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', color: 'var(--ink)', letterSpacing: '0.06em', border: '1px solid rgba(26,26,26,0.15)', borderRadius: '2px', padding: '8px 16px', whiteSpace: 'nowrap' }}>View log {'->'}</Link>
         </div>
       </section>

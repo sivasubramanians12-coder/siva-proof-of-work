@@ -5,8 +5,8 @@ import type { Metadata } from 'next';
 import LogClient from './LogClient';
 
 export const metadata: Metadata = {
-  title: "Log - Siva's Proof-of-Work",
-  description: 'Timestamped build ledger. Source material for cases and learnings, not the main teaching surface.',
+  title: "Build Log - Siva's Proof-of-Work",
+  description: 'A dated ledger of what shipped, what changed, and what was learned.',
 };
 
 export interface LogEntry {

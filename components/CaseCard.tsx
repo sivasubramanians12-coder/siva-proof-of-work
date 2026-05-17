@@ -25,7 +25,7 @@ interface CaseCardProps {
 }
 
 export default function CaseCard({ caseData }: CaseCardProps) {
-  const { title, domain, status, excerpt, outcome, stack, slug } = caseData;
+  const { title, domain, status, outcome, stack, slug } = caseData;
   const dStyle = domainStyles[domain];
   const statusColor = statusColors[status];
 
@@ -103,66 +103,22 @@ export default function CaseCard({ caseData }: CaseCardProps) {
         {title}
       </h2>
 
-      {/* Meta grid */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '12px',
-          borderTop: '1px solid rgba(26,26,26,0.06)',
-          borderBottom: '1px solid rgba(26,26,26,0.06)',
-          padding: '12px 0',
-        }}
-      >
+      {/* Problem-led case format */}
+      <div style={{ display: 'grid', gap: '14px', borderTop: '1px solid rgba(26,26,26,0.06)', borderBottom: '1px solid rgba(26,26,26,0.06)', padding: '16px 0' }}>
         {[
-          { label: 'Domain', value: domain },
-          { label: 'Status', value: status },
-          { label: 'Built', value: stack[0] + (stack.length > 1 ? ` +${stack.length - 1}` : '') },
-        ].map(({ label, value }) => (
-          <div key={label}>
-            <p
-              style={{
-                fontFamily: 'var(--type-mono)',
-                fontSize: '9px',
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                color: 'var(--pencil)',
-                marginBottom: '4px',
-              }}
-            >
+          { label: 'Problem', value: caseData.problem, color: 'var(--signal-amber)' },
+          { label: 'System', value: caseData.built, color: 'var(--draft-blue)' },
+          { label: 'Proof', value: outcome, color: 'var(--evidence-green)' },
+        ].map(({ label, value, color }) => (
+          <div key={label} style={{ borderLeft: `3px solid ${color}`, paddingLeft: '12px' }}>
+            <p style={{ fontFamily: 'var(--type-mono)', fontSize: '9px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--pencil)', marginBottom: '4px' }}>
               {label}
             </p>
-            <p
-              style={{
-                fontFamily: 'var(--type-mono)',
-                fontSize: '11px',
-                color: 'var(--graphite)',
-                fontWeight: 500,
-              }}
-            >
+            <p style={{ fontFamily: 'var(--type-body)', fontSize: '14px', lineHeight: 1.6, color: 'var(--graphite)' }}>
               {value}
             </p>
           </div>
         ))}
-      </div>
-
-      {/* Excerpt */}
-      <div
-        style={{
-          borderLeft: '3px solid var(--signal-amber)',
-          paddingLeft: '14px',
-        }}
-      >
-        <p
-          style={{
-            fontFamily: 'var(--type-body)',
-            fontSize: '14px',
-            lineHeight: 1.65,
-            color: 'var(--graphite)',
-          }}
-        >
-          {excerpt}
-        </p>
       </div>
 
       {/* Footer */}
@@ -175,17 +131,8 @@ export default function CaseCard({ caseData }: CaseCardProps) {
           flexWrap: 'wrap',
         }}
       >
-        <p
-          style={{
-            fontFamily: 'var(--type-mono)',
-            fontSize: '11px',
-            color: 'var(--evidence-green)',
-            fontWeight: 500,
-            maxWidth: '340px',
-            lineHeight: 1.5,
-          }}
-        >
-          ✓ {outcome}
+        <p style={{ fontFamily: 'var(--type-mono)', fontSize: '10px', color: 'var(--pencil)', fontWeight: 500, maxWidth: '340px', lineHeight: 1.5 }}>
+          {stack[0]}{stack.length > 1 ? ` +${stack.length - 1}` : ''}
         </p>
 
         <Link

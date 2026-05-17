@@ -62,14 +62,34 @@ export default function LogClient({ entries, months, topTags }: Props) {
       {/* Header */}
       <div style={{ marginBottom: '40px' }}>
         <p style={{ fontFamily: 'var(--type-mono)', fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--signal-amber)', marginBottom: '12px' }}>
-          Timestamped ledger
+          Dated ledger
         </p>
-        <h1 style={{ fontFamily: 'var(--type-display)', fontSize: 'clamp(28px, 4vw, 40px)', color: 'var(--ink)', letterSpacing: '-0.01em', marginBottom: '8px' }}>
-          Log
+        <h1 style={{ fontFamily: 'var(--type-display)', fontSize: 'clamp(34px, 5vw, 56px)', color: 'var(--ink)', letterSpacing: '-0.01em', marginBottom: '10px' }}>
+          Build Log
         </h1>
-        <p style={{ fontFamily: 'var(--type-body)', fontSize: '14px', color: 'var(--pencil)', lineHeight: 1.6 }}>
-          Source material for cases and learnings. One takeaway first, details only when needed.
+        <p style={{ fontFamily: 'var(--type-body)', fontSize: '16px', color: 'var(--graphite)', lineHeight: 1.7, maxWidth: '640px' }}>
+          A dated ledger of what shipped, what changed, and what was learned.
+          The log is the raw operating trail. It captures sequence, decisions, and change over time.
+          It is not the main teaching surface. The cases and learnings are what survive after the noise is filtered out.
         </p>
+      </div>
+
+      <div style={{ backgroundColor: 'var(--paper-warm)', border: '1px solid rgba(26,26,26,0.08)', borderRadius: '8px', padding: '22px 24px', marginBottom: '40px', borderTop: '4px solid var(--signal-amber)' }}>
+        <p style={{ fontFamily: 'var(--type-mono)', fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--signal-amber)', marginBottom: '12px' }}>
+          Editorial filter
+        </p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))', gap: '14px' }}>
+          {[
+            ['Give length', 'Real workflow change, later decision, reusable lesson, meaningful failure, or proof that a system is compounding.'],
+            ['Keep short', 'Status exhaust, housekeeping without lesson value, or an operational update that is not narratively useful.'],
+            ['Relationship', 'Log = what happened. Case = what was built. Learning = what was learned. Playbook = how the system operates.'],
+          ].map(([title, copy]) => (
+            <div key={title}>
+              <p style={{ fontFamily: 'var(--type-mono)', fontSize: '9px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--pencil)', marginBottom: '6px' }}>{title}</p>
+              <p style={{ fontFamily: 'var(--type-body)', fontSize: '14px', lineHeight: 1.6, color: 'var(--graphite)' }}>{copy}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Filters */}
@@ -136,14 +156,14 @@ export default function LogClient({ entries, months, topTags }: Props) {
                 ))}
               </div>
 
-              {/* Title */}
+              {/* Headline */}
               <h2 style={{ fontFamily: 'var(--type-display)', fontSize: '22px', color: 'var(--ink)', letterSpacing: '-0.01em', marginBottom: '10px' }}>
                 {entry.title}
               </h2>
 
               {/* Takeaway */}
               <p style={{ fontFamily: 'var(--type-mono)', fontSize: '9px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--signal-amber)', marginBottom: '6px' }}>
-                Takeaway
+                One strong sentence
               </p>
               <p style={{ fontFamily: 'var(--type-body)', fontSize: '14px', lineHeight: 1.7, color: 'var(--graphite)', marginBottom: '16px' }}>
                 {entry.excerpt}
