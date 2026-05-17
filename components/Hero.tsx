@@ -175,10 +175,10 @@ export default function Hero() {
                 next move
               </p>
               <h2 style={{ fontFamily: 'var(--type-display)', fontSize: '36px', lineHeight: 1.02, color: 'var(--ink)', marginBottom: '10px' }}>
-                Knowledge OS
+                Operator Playbook
               </h2>
               <p style={{ fontFamily: 'var(--type-body)', fontSize: '14px', lineHeight: 1.6, color: 'var(--graphite)' }}>
-                Turn scattered notes, shipped work, and follow-up into decisions that can be reused.
+                Turn scattered work into proof, learnings, method, and a ledger people can follow.
               </p>
             </div>
 

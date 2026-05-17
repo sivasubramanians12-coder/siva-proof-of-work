@@ -37,16 +37,18 @@ export default async function Home() {
           </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: '14px', marginBottom: '32px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))', gap: '14px', marginBottom: '32px' }}>
           {[
-            ['Operator lens', 'Each project is judged by whether it reduces friction for a real workflow, not whether the tool stack sounds impressive.'],
-            ['Proof trail', 'Cases, logs, and notes show what shipped, what changed, and what lesson should survive the week.'],
-            ['Public boundary', 'The site explains patterns and principles without exposing confidential operating detail.'],
-          ].map(([title, copy]) => (
-            <article key={title} style={{ backgroundColor: 'var(--paper-warm)', border: '1px solid rgba(26,26,26,0.08)', borderRadius: '8px', padding: '20px', borderTop: '4px solid var(--signal-amber)' }}>
+            ['Cases', 'Proof', 'Real workflows, shipped systems, concrete operator lessons.', '/#cases'],
+            ['Learnings', 'Interpretation', 'Reusable essays pulled from cases and build logs.', '/learnings'],
+            ['Playbook', 'Method', 'The operating loop behind capture, routing, review, memory, and publishing.', '/playbook'],
+            ['Log', 'Ledger', 'Timestamped source material. Useful evidence, not the main story.', '/log'],
+          ].map(([title, label, copy, href]) => (
+            <Link key={title} href={href} style={{ backgroundColor: 'var(--paper-warm)', border: '1px solid rgba(26,26,26,0.08)', borderRadius: '8px', padding: '20px', borderTop: '4px solid var(--signal-amber)', display: 'block' }}>
               <p style={{ fontFamily: 'var(--type-mono)', fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--signal-amber)', marginBottom: '10px' }}>{title}</p>
+              <h3 style={{ fontFamily: 'var(--type-display)', fontSize: '26px', lineHeight: 1.08, color: 'var(--ink)', marginBottom: '8px' }}>{label}</h3>
               <p style={{ fontFamily: 'var(--type-body)', fontSize: '14px', lineHeight: 1.65, color: 'var(--graphite)' }}>{copy}</p>
-            </article>
+            </Link>
           ))}
         </div>
 

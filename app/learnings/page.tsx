@@ -110,7 +110,7 @@ export default function LearningsPage() {
           <p style={{ ...body, maxWidth: '640px' }}>
             This page is the publishing queue: raw logs and case details become short, opinionated essays only when there is a reusable operating lesson.
           </p>
-          <Link href="/stack" style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', color: 'var(--ink)', letterSpacing: '0.06em', border: '1px solid rgba(26,26,26,0.16)', borderRadius: '3px', padding: '10px 16px' }}>
+          <Link href="/playbook" style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', color: 'var(--ink)', letterSpacing: '0.06em', border: '1px solid rgba(26,26,26,0.16)', borderRadius: '3px', padding: '10px 16px' }}>
             Read playbook {'->'}
           </Link>
         </section>

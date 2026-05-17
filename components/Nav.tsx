@@ -11,7 +11,7 @@ export default function Nav() {
           {[
             { href: '/#cases', label: 'Cases' },
             { href: '/learnings', label: 'Learnings' },
-            { href: '/stack', label: 'Playbook' },
+            { href: '/playbook', label: 'Playbook' },
             { href: '/log', label: 'Log' },
             { href: '/about', label: 'About' },
           ].map(({ href, label }) => (
