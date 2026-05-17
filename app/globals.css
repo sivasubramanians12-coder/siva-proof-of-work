@@ -5,17 +5,19 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital,wght@0,400;1,400&family=DM+Sans:wght@400;500;600&display=swap');
 
 :root {
-  --ink: #1a1a1a;
-  --paper: #f5f2eb;
-  --paper-warm: #ebe5d8;
-  --graphite: #4a4a4a;
-  --pencil: #8a8578;
-  --signal-amber: #c4841d;
-  --signal-amber-light: #f0d9a8;
-  --signal-red: #b84233;
-  --draft-blue: #2d5f8a;
-  --draft-blue-light: #d4e3f0;
-  --evidence-green: #3a6b4a;
+  --ink: #050506;
+  --paper: #f2eee7;
+  --paper-warm: #e8e1d4;
+  --graphite: #303238;
+  --pencil: #77746b;
+  --signal-amber: #f35b2a;
+  --signal-amber-light: #f6c8b3;
+  --signal-red: #e83417;
+  --draft-blue: #9bb8d4;
+  --draft-blue-light: #dce7ef;
+  --evidence-green: #5fa883;
+  --ash: #55585d;
+  --night-card: #131417;
   --white: #ffffff;
   --type-display: var(--font-instrument-serif), Georgia, serif;
   --type-mono: var(--font-ibm-plex-mono), 'Courier New', monospace;
@@ -65,12 +67,12 @@ p {
   height: 4px;
   background: linear-gradient(
     90deg,
-    #c4841d 0%,
-    #c4841d 60%,
-    #2d5f8a 60%,
-    #2d5f8a 80%,
-    #3a6b4a 80%,
-    #3a6b4a 100%
+    #f35b2a 0%,
+    #f35b2a 58%,
+    #5fa883 58%,
+    #5fa883 78%,
+    #9bb8d4 78%,
+    #9bb8d4 100%
   );
   width: 100%;
 }

@@ -138,6 +138,110 @@ export default function StackPage() {
           <div
             style={{
               display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))',
+              gap: '22px',
+              marginBottom: '34px',
+              alignItems: 'stretch',
+            }}
+          >
+            <div
+              style={{
+                backgroundColor: 'rgba(19,20,23,0.9)',
+                border: '1px solid rgba(242,238,231,0.1)',
+                borderRadius: '20px',
+                padding: '22px',
+              }}
+            >
+              <div style={{ display: 'flex', justifyContent: 'space-between', gap: '14px', marginBottom: '22px' }}>
+                <span style={{ ...monoLabel, color: 'rgba(242,238,231,0.45)' }}>system route</span>
+                <span style={{ ...monoLabel, color: 'var(--evidence-green)' }}>online</span>
+              </div>
+              <div
+                style={{
+                  backgroundColor: 'var(--paper)',
+                  borderRadius: '16px',
+                  padding: '22px',
+                  borderLeft: '8px solid var(--signal-amber)',
+                  marginBottom: '14px',
+                }}
+              >
+                <p style={{ ...monoLabel, color: 'var(--pencil)', marginBottom: '10px' }}>current build</p>
+                <h2 style={{ fontFamily: 'var(--type-display)', fontSize: '34px', lineHeight: 1.02, color: 'var(--ink)', marginBottom: '8px' }}>
+                  Knowledge OS
+                </h2>
+                <p style={{ fontFamily: 'var(--type-body)', fontSize: '14px', lineHeight: 1.6, color: 'var(--graphite)' }}>
+                  Capture the work, filter the signal, promote only what should steer future decisions.
+                </p>
+              </div>
+              <div style={{ display: 'grid', gap: '10px' }}>
+                {['Capture -> Route', 'Retrieve -> Review', 'Apply -> Publish'].map((item, index) => (
+                  <div
+                    key={item}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '12px',
+                      backgroundColor: index === 1 ? 'var(--signal-amber)' : 'rgba(242,238,231,0.06)',
+                      color: index === 1 ? 'var(--ink)' : 'rgba(242,238,231,0.74)',
+                      borderRadius: '12px',
+                      padding: '12px 14px',
+                      fontFamily: 'var(--type-mono)',
+                      fontSize: '11px',
+                      letterSpacing: '0.06em',
+                    }}
+                  >
+                    <span
+                      style={{
+                        width: '10px',
+                        height: '10px',
+                        borderRadius: '50%',
+                        backgroundColor: index === 2 ? 'var(--evidence-green)' : index === 1 ? 'var(--ink)' : 'var(--paper)',
+                        flexShrink: 0,
+                      }}
+                    />
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div
+              style={{
+                backgroundColor: 'rgba(19,20,23,0.9)',
+                border: '1px solid rgba(242,238,231,0.1)',
+                borderRadius: '20px',
+                padding: '22px',
+              }}
+            >
+              <p style={{ ...monoLabel, color: 'rgba(242,238,231,0.45)', marginBottom: '22px' }}>field palette</p>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '10px', marginBottom: '24px' }}>
+                {[
+                  ['Black', '#050506'],
+                  ['Paper', '#f2eee7'],
+                  ['Orange', '#f35b2a'],
+                  ['Moss', '#5fa883'],
+                  ['Ash', '#55585d'],
+                  ['Weather', '#9bb8d4'],
+                ].map(([name, color]) => (
+                  <div key={name} style={{ backgroundColor: color, minHeight: '64px', borderRadius: '12px', padding: '10px', display: 'flex', alignItems: 'flex-end' }}>
+                    <span style={{ fontFamily: 'var(--type-mono)', fontSize: '10px', color: color === '#050506' || color === '#55585d' || color === '#f35b2a' ? 'var(--paper)' : 'var(--ink)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                      {name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <div style={{ backgroundColor: 'var(--paper)', borderRadius: '16px', padding: '20px' }}>
+                <p style={{ ...monoLabel, color: 'var(--pencil)', marginBottom: '8px' }}>operator note</p>
+                <p style={{ fontFamily: 'var(--type-display)', fontSize: '28px', lineHeight: 1.12, color: 'var(--ink)' }}>
+                  Serious AI work needs a map, not a pile of chats.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 210px), 1fr))',
               borderTop: '1px solid rgba(245,242,235,0.08)',
               paddingTop: '30px',
