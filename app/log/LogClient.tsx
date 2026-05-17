@@ -62,13 +62,13 @@ export default function LogClient({ entries, months, topTags }: Props) {
       {/* Header */}
       <div style={{ marginBottom: '40px' }}>
         <p style={{ fontFamily: 'var(--type-mono)', fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--signal-amber)', marginBottom: '12px' }}>
-          Daily build log
+          Timestamped ledger
         </p>
         <h1 style={{ fontFamily: 'var(--type-display)', fontSize: 'clamp(28px, 4vw, 40px)', color: 'var(--ink)', letterSpacing: '-0.01em', marginBottom: '8px' }}>
           Log
         </h1>
         <p style={{ fontFamily: 'var(--type-body)', fontSize: '14px', color: 'var(--pencil)', lineHeight: 1.6 }}>
-          Tools, decisions, what broke, what worked. Latest first.
+          Source material for cases and learnings. One takeaway first, details only when needed.
         </p>
       </div>
 
@@ -141,7 +141,10 @@ export default function LogClient({ entries, months, topTags }: Props) {
                 {entry.title}
               </h2>
 
-              {/* Excerpt */}
+              {/* Takeaway */}
+              <p style={{ fontFamily: 'var(--type-mono)', fontSize: '9px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--signal-amber)', marginBottom: '6px' }}>
+                Takeaway
+              </p>
               <p style={{ fontFamily: 'var(--type-body)', fontSize: '14px', lineHeight: 1.7, color: 'var(--graphite)', marginBottom: '16px' }}>
                 {entry.excerpt}
               </p>

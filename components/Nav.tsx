@@ -10,8 +10,10 @@ export default function Nav() {
         <div style={{ display: 'flex', gap: '28px', alignItems: 'center' }}>
           {[
             { href: '/#cases', label: 'Cases' },
+            { href: '/learnings', label: 'Learnings' },
+            { href: '/stack', label: 'Playbook' },
             { href: '/log', label: 'Log' },
-            { href: '/stack', label: 'Knowledge OS' },
+            { href: '/about', label: 'About' },
           ].map(({ href, label }) => (
             <Link key={label} href={href} style={{ fontFamily: 'var(--type-mono)', fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--graphite)' }}>
               {label}
