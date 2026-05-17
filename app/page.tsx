@@ -37,6 +37,19 @@ export default async function Home() {
           </p>
         </div>
 
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: '14px', marginBottom: '32px' }}>
+          {[
+            ['Operator lens', 'Each project is judged by whether it reduces friction for a real workflow, not whether the tool stack sounds impressive.'],
+            ['Proof trail', 'Cases, logs, and notes show what shipped, what changed, and what lesson should survive the week.'],
+            ['Public boundary', 'The site explains patterns and principles without exposing confidential operating detail.'],
+          ].map(([title, copy]) => (
+            <article key={title} style={{ backgroundColor: 'var(--paper-warm)', border: '1px solid rgba(26,26,26,0.08)', borderRadius: '8px', padding: '20px', borderTop: '4px solid var(--signal-amber)' }}>
+              <p style={{ fontFamily: 'var(--type-mono)', fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--signal-amber)', marginBottom: '10px' }}>{title}</p>
+              <p style={{ fontFamily: 'var(--type-body)', fontSize: '14px', lineHeight: 1.65, color: 'var(--graphite)' }}>{copy}</p>
+            </article>
+          ))}
+        </div>
+
         {/* Featured */}
         <Link href={`/cases/${featured.slug}`} style={{ textDecoration: 'none', display: 'block', marginBottom: '24px' }}>
           <div style={{ backgroundColor: 'var(--ink)', borderRadius: '2px', overflow: 'hidden', backgroundImage: 'linear-gradient(rgba(196,132,29,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(196,132,29,0.05) 1px, transparent 1px)', backgroundSize: '20px 20px', position: 'relative' }}>

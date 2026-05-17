@@ -32,13 +32,14 @@ export default function CaseCard({ caseData }: CaseCardProps) {
   return (
     <article
       style={{
-        backgroundColor: 'var(--white)',
+        backgroundColor: 'var(--paper-warm)',
         border: '1px solid rgba(26,26,26,0.1)',
-        borderRadius: '2px',
+        borderRadius: '8px',
         padding: '28px',
         display: 'flex',
         flexDirection: 'column',
         gap: '20px',
+        borderTop: '4px solid var(--signal-amber)',
       }}
     >
 
@@ -198,7 +199,7 @@ export default function CaseCard({ caseData }: CaseCardProps) {
             flexShrink: 0,
           }}
         >
-          Read case →
+          Read case {'->'}
         </Link>
       </div>
     </article>

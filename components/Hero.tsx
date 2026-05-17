@@ -1,8 +1,8 @@
 const routeItems = [
-  ['09:00', 'Operating problem captured', 'source, owner, constraint'],
-  ['11:30', 'Agent team assigned', 'research / build / review'],
-  ['16:10', 'Knowledge promoted', 'decision survives the session'],
-  ['22:30', 'Proof published', 'log, case, or draft'],
+  ['09:00', 'Problem captured', 'source / owner / constraint'],
+  ['11:30', 'Work routed', 'research / build / review'],
+  ['16:10', 'Decision saved', 'what survives tomorrow'],
+  ['22:30', 'Proof published', 'case / log / draft'],
 ];
 
 export default function Hero() {
@@ -86,8 +86,8 @@ export default function Hero() {
                 }}
               >
                 A business leader with a computer science spine: turning live operating
-                problems into AI workflows, review gates, memory systems, and proof that
-                survives outside the demo.
+                problems into working tools, reviewable decisions, and proof that compounds
+                after the demo is over.
               </p>
             </div>
 
@@ -110,7 +110,7 @@ export default function Hero() {
                   style={{
                     backgroundColor: 'rgba(19,20,23,0.84)',
                     border: '1px solid rgba(242,238,231,0.1)',
-                    borderRadius: '10px',
+                    borderRadius: '8px',
                     padding: '18px 16px',
                     minHeight: '100px',
                   }}
@@ -139,7 +139,7 @@ export default function Hero() {
             style={{
               backgroundColor: 'rgba(19,20,23,0.9)',
               border: '1px solid rgba(242,238,231,0.11)',
-              borderRadius: '22px',
+              borderRadius: '8px',
               padding: '22px',
               boxShadow: '0 28px 80px rgba(0,0,0,0.35)',
             }}
@@ -165,7 +165,7 @@ export default function Hero() {
             <div
               style={{
                 backgroundColor: 'var(--paper)',
-                borderRadius: '18px',
+                borderRadius: '8px',
                 padding: '24px',
                 marginBottom: '14px',
                 borderLeft: '8px solid var(--signal-amber)',
@@ -178,7 +178,7 @@ export default function Hero() {
                 Knowledge OS
               </h2>
               <p style={{ fontFamily: 'var(--type-body)', fontSize: '14px', lineHeight: 1.6, color: 'var(--graphite)' }}>
-                Convert session debris into reusable decisions, source-backed context, and public proof.
+                Turn scattered notes, shipped work, and follow-up into decisions that can be reused.
               </p>
             </div>
 
@@ -211,7 +211,7 @@ export default function Hero() {
                       backgroundColor: index === 1 ? 'var(--signal-amber)' : 'rgba(242,238,231,0.06)',
                       color: index === 1 ? 'var(--ink)' : 'var(--paper)',
                       border: '1px solid rgba(242,238,231,0.08)',
-                      borderRadius: '14px',
+                      borderRadius: '8px',
                       padding: '14px 16px',
                     }}
                   >

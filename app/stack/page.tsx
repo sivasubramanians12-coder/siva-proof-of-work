@@ -4,7 +4,7 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: "OpenClaw Knowledge OS - Siva's Proof-of-Work",
   description:
-    'The operating system behind Siva Subramanian: agents, memory, review gates, and a governed Knowledge OS built for real work.',
+    'How Siva Subramanian turns daily operating work into reusable decisions, build logs, and public proof.',
 };
 
 const monoLabel = {
@@ -29,44 +29,67 @@ const darkBody = {
 };
 
 const agents = [
-  ['BarleyBot', 'Orchestrates intake, delegation, memory, status, and quality gates.'],
-  ['Coffee', 'Researches before builds so the work starts from evidence, not vibes.'],
-  ['Coder', 'Turns approved direction into working software and checks it.'],
-  ['Picasso', 'Reviews interface, hierarchy, polish, and brand consistency.'],
-  ['TodoBot', 'Keeps the operating queue honest: active, waiting, shipped, blocked.'],
-  ['MarketerBot', 'Turns shipped work into public writing without hype.'],
-  ['HealthBot', 'Personal performance coach, separate from the work org chain.'],
+  ['BarleyBot', 'Runs intake, keeps the queue honest, and decides what needs Siva versus what can move.'],
+  ['Coffee', 'Turns a loose question into usable research before anyone starts building.'],
+  ['Coder', 'Takes approved direction and ships working software in the right repo.'],
+  ['Picasso', 'Keeps the interface sharp, legible, and consistent with the point of the page.'],
+  ['TodoBot', 'Tracks what is active, waiting, shipped, or blocked so work does not disappear.'],
+  ['MarketerBot', 'Turns shipped work into clear public writing: business problem first, tool second.'],
+  ['HealthBot', 'Personal performance coach, deliberately outside the work chain.'],
 ];
 
 const principles = [
   {
-    title: 'Memory is governed, not dumped',
+    title: 'Save judgment, not noise',
     copy:
-      'Daily logs preserve raw context. Durable memory only gets promoted when it is useful across future work. The point is better recall, not a larger pile.',
+      'Raw notes are useful for a day. Durable memory only earns its place when it can change a future decision. The goal is not a bigger archive; it is less repeated thinking.',
   },
   {
-    title: 'Agents draft; humans approve',
+    title: 'Draft fast, approve carefully',
     copy:
-      'The system can research, write, code, and recommend. Shipping, publishing, and sensitive judgment still pass through review gates.',
+      'The system can research, write, code, and recommend. Shipping, publishing, and sensitive judgment still need a human checkpoint.',
   },
   {
-    title: 'Context is infrastructure',
+    title: 'Context is the real product',
     copy:
-      'A good agent setup is less about clever prompts and more about source boundaries, task history, retrieval, permissions, and evidence.',
+      'A useful agent setup is not a clever prompt collection. It is a way to preserve sources, ownership, task history, decisions, and evidence.',
   },
   {
-    title: 'Builds become proof',
+    title: 'Every build must leave a trail',
     copy:
-      'Every useful build should leave behind a case, a log entry, a decision trail, or a reusable pattern. Otherwise the learning evaporates.',
+      'A shipped tool should leave behind a case, a log entry, a decision trail, or a reusable pattern. Otherwise the learning disappears with the session.',
   },
 ];
 
 const knowledgeLayers = [
-  ['Capture', 'Telegram, voice notes, repo commits, reports, daily logs, and operator notes enter the system.'],
-  ['Route', 'Memory stays separate from durable knowledge, reports, project docs, and public content drafts.'],
-  ['Retrieve', 'QMD semantic search finds prior decisions, project state, and relevant source material before answering.'],
-  ['Review', 'Linting, citations, promotion queues, and weekly maintenance catch weak or unsourced knowledge.'],
-  ['Apply', 'Agents use the retrieved context to research, build, brief, and publish with less repeated setup.'],
+  ['Capture', 'Ideas, messages, commits, reports, voice notes, and daily work enter without pretending they are all equal.'],
+  ['Route', 'A quick answer, a research task, a build, a reminder, and a public draft do not belong in the same bucket.'],
+  ['Recall', 'Before answering or building, the system looks for prior decisions, project state, and the source that supports it.'],
+  ['Review', 'Weak notes, stale claims, and private details are stopped before they become public memory.'],
+  ['Apply', 'The useful context comes back into the next build, briefing, status update, or LinkedIn draft.'],
+];
+
+const guideSteps = [
+  {
+    title: '1. Capture the messy input',
+    copy:
+      'A useful operating system starts where work actually begins: a Telegram message, a half-formed idea, a repo commit, a screenshot, a meeting note, or a late-night correction. Capture first. Do not force polish too early.',
+  },
+  {
+    title: '2. Decide the route',
+    copy:
+      'Most inputs need one of five routes: answer now, research first, build something, schedule a follow-up, or hold for human judgment. The route matters because it prevents every idea from becoming another open tab.',
+  },
+  {
+    title: '3. Build with a checkpoint',
+    copy:
+      'The team can draft copy, inspect code, update a page, and run checks. But anything public, strategic, or brand-sensitive gets a review moment. Speed is useful only when the final judgment is still controlled.',
+  },
+  {
+    title: '4. Promote the lesson',
+    copy:
+      'After the work ships, only the durable lesson gets promoted: what changed, why it mattered, what broke, and what should be reused. That is how a personal AI setup becomes an operating memory instead of a chat archive.',
+  },
 ];
 
 export default function StackPage() {
@@ -118,7 +141,7 @@ export default function StackPage() {
                 letterSpacing: '-0.02em',
               }}
             >
-              The operator&apos;s AI stack is not a chatbot. It is an operating system.
+              A field guide for running work through AI without losing the plot.
             </h1>
           </div>
 
@@ -130,9 +153,9 @@ export default function StackPage() {
               marginBottom: '46px',
             }}
           >
-            OpenClaw is the control plane. Knowledge OS is the memory discipline around it.
-            Together they let one operator run research, build work, review gates, daily logs,
-            and public proof-of-work without restarting from zero every morning.
+            OpenClaw is the workbench. Knowledge OS is the discipline around it.
+            Together they turn daily operating pressure into routed work, checked decisions,
+            useful memory, and public proof that does not leak private detail.
           </p>
 
           <div
@@ -148,7 +171,7 @@ export default function StackPage() {
               style={{
                 backgroundColor: 'rgba(19,20,23,0.9)',
                 border: '1px solid rgba(242,238,231,0.1)',
-                borderRadius: '20px',
+                borderRadius: '8px',
                 padding: '22px',
               }}
             >
@@ -159,7 +182,7 @@ export default function StackPage() {
               <div
                 style={{
                   backgroundColor: 'var(--paper)',
-                  borderRadius: '16px',
+                  borderRadius: '8px',
                   padding: '22px',
                   borderLeft: '8px solid var(--signal-amber)',
                   marginBottom: '14px',
@@ -183,7 +206,7 @@ export default function StackPage() {
                       gap: '12px',
                       backgroundColor: index === 1 ? 'var(--signal-amber)' : 'rgba(242,238,231,0.06)',
                       color: index === 1 ? 'var(--ink)' : 'rgba(242,238,231,0.74)',
-                      borderRadius: '12px',
+                      borderRadius: '8px',
                       padding: '12px 14px',
                       fontFamily: 'var(--type-mono)',
                       fontSize: '11px',
@@ -209,7 +232,7 @@ export default function StackPage() {
               style={{
                 backgroundColor: 'rgba(19,20,23,0.9)',
                 border: '1px solid rgba(242,238,231,0.1)',
-                borderRadius: '20px',
+                borderRadius: '8px',
                 padding: '22px',
               }}
             >
@@ -223,14 +246,14 @@ export default function StackPage() {
                   ['Ash', '#55585d'],
                   ['Weather', '#9bb8d4'],
                 ].map(([name, color]) => (
-                  <div key={name} style={{ backgroundColor: color, minHeight: '64px', borderRadius: '12px', padding: '10px', display: 'flex', alignItems: 'flex-end' }}>
+                  <div key={name} style={{ backgroundColor: color, minHeight: '64px', borderRadius: '8px', padding: '10px', display: 'flex', alignItems: 'flex-end' }}>
                     <span style={{ fontFamily: 'var(--type-mono)', fontSize: '10px', color: color === '#050506' || color === '#55585d' || color === '#f35b2a' ? 'var(--paper)' : 'var(--ink)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
                       {name}
                     </span>
                   </div>
                 ))}
               </div>
-              <div style={{ backgroundColor: 'var(--paper)', borderRadius: '16px', padding: '20px' }}>
+              <div style={{ backgroundColor: 'var(--paper)', borderRadius: '8px', padding: '20px' }}>
                 <p style={{ ...monoLabel, color: 'var(--pencil)', marginBottom: '8px' }}>operator note</p>
                 <p style={{ fontFamily: 'var(--type-display)', fontSize: '28px', lineHeight: 1.12, color: 'var(--ink)' }}>
                   Serious AI work needs a map, not a pile of chats.
@@ -250,10 +273,10 @@ export default function StackPage() {
             }}
           >
             {[
-              ['7', 'specialist agents'],
+              ['7', 'specialist roles'],
               ['33', 'scheduled jobs'],
-              ['QMD', 'semantic recall'],
-              ['Human', 'approval gates'],
+              ['Past', 'decisions recalled'],
+              ['Human', 'ship approvals'],
             ].map(([value, label]) => (
               <div key={label}>
                 <div style={{ fontFamily: 'var(--type-display)', fontSize: '36px', color: 'var(--paper)', lineHeight: 1 }}>
@@ -303,15 +326,15 @@ export default function StackPage() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: '28px', alignItems: 'start', marginBottom: '72px' }}>
           <div>
             <p style={{ ...bodyCopy, fontSize: '17px', color: 'var(--ink)', marginBottom: '18px' }}>
-              The hard part of AI at work is not asking a model a question. It is getting the
-              system to remember what matters, use the right source, hand work to the right agent,
-              and stop when a human decision is required.
+              The hard part of using AI at work is not asking a model a question. It is keeping
+              the work tied to a real operating problem, remembering what has already been decided,
+              and knowing when to stop for human judgment.
             </p>
             <p style={bodyCopy}>
-              That is the gap OpenClaw is built around. It turns chat into an operating rhythm:
-              intake, research, build, design review, content, memory, and daily proof. The
-              stack is deliberately personal because the best test environment is the one with
-              real pressure and real consequences.
+              That is the gap this setup is built around. It turns daily noise into an operating
+              rhythm: capture the issue, route the work, check the output, save the lesson, and
+              publish only what is safe and useful. It is deliberately personal because the best
+              test environment is live work with real pressure.
             </p>
           </div>
           <div
@@ -324,7 +347,7 @@ export default function StackPage() {
           >
             <p style={{ ...monoLabel, color: 'var(--signal-amber)', marginBottom: '14px' }}>operating rule</p>
             <p style={{ fontFamily: 'var(--type-display)', fontSize: '28px', lineHeight: 1.18, color: 'var(--ink)' }}>
-              If the system cannot preserve context, assign work, and expose evidence, it is not an operating system. It is a clever inbox.
+              If the system cannot preserve context, assign work, and show evidence, it is not an operating system. It is a clever inbox.
             </p>
           </div>
         </div>
@@ -367,7 +390,7 @@ export default function StackPage() {
                 Memory only matters when it changes the next action.
               </h2>
               <p style={darkBody}>
-                Knowledge OS keeps the agent team honest: what was decided, where it came from,
+                Knowledge OS keeps the work honest: what was decided, where it came from,
                 whether it is safe to reuse, and which parts are still only working notes.
               </p>
             </div>
@@ -387,12 +410,22 @@ export default function StackPage() {
           </div>
         </div>
 
-        <SectionHeader n="04" title="Architecture, Translated" kicker="how it works" />
+        <SectionHeader n="04" title="Operator Guide" kicker="how to use it" />
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: '14px', marginBottom: '72px' }}>
+          {guideSteps.map((item) => (
+            <article key={item.title} style={{ backgroundColor: 'var(--white)', border: '1px solid rgba(26,26,26,0.1)', borderRadius: '8px', padding: '24px', borderTop: '4px solid var(--signal-amber)' }}>
+              <h3 style={{ fontFamily: 'var(--type-display)', fontSize: '26px', lineHeight: 1.12, color: 'var(--ink)', marginBottom: '10px' }}>{item.title}</h3>
+              <p style={bodyCopy}>{item.copy}</p>
+            </article>
+          ))}
+        </div>
+
+        <SectionHeader n="05" title="Architecture Note" kicker="markdown block" />
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: '20px', marginBottom: '72px' }}>
           <CodePanel />
           <div style={{ display: 'grid', gap: '14px' }}>
             {principles.map((item) => (
-              <article key={item.title} style={{ backgroundColor: 'var(--paper-warm)', border: '1px solid rgba(26,26,26,0.08)', borderRadius: '4px', padding: '22px' }}>
+              <article key={item.title} style={{ backgroundColor: 'var(--paper-warm)', border: '1px solid rgba(26,26,26,0.08)', borderRadius: '8px', padding: '22px' }}>
                 <h3 style={{ fontFamily: 'var(--type-display)', fontSize: '25px', lineHeight: 1.15, color: 'var(--ink)', marginBottom: '8px' }}>{item.title}</h3>
                 <p style={bodyCopy}>{item.copy}</p>
               </article>
@@ -400,14 +433,14 @@ export default function StackPage() {
           </div>
         </div>
 
-        <SectionHeader n="05" title="What Changed in the Latest Build" kicker="current state" />
-        <div style={{ backgroundColor: 'var(--white)', border: '1px solid rgba(26,26,26,0.1)', borderRadius: '4px', padding: '30px', marginBottom: '72px' }}>
+        <SectionHeader n="06" title="What Changed in the Latest Build" kicker="current state" />
+        <div style={{ backgroundColor: 'var(--white)', border: '1px solid rgba(26,26,26,0.1)', borderRadius: '8px', padding: '30px', marginBottom: '72px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: '18px' }}>
             {[
-              ['Maintenance chain', 'Weekly signal capture, memory promotion, graph maintenance, retrieval eval, trend check, and lint now run in sequence.'],
-              ['Source boundaries', 'Agent-source policy and skill resolver indexes make it clearer which knowledge can be trusted for which job.'],
-              ['Retrieval checks', 'QMD smoke tests verify that populated domains answer correctly and empty domains stay visibly empty.'],
-              ['Command runners', 'Cron jobs moved toward deterministic scripts where reliable execution matters more than agent improvisation.'],
+              ['Weekly cleanup', 'The system now has a stronger rhythm for capturing useful signal and pruning weak memory.'],
+              ['Source boundaries', 'It is clearer which notes can be trusted for which job, and which ones are only working context.'],
+              ['Recall checks', 'The setup checks whether past decisions can actually be found when they are needed.'],
+              ['Reliable jobs', 'Scheduled work is moving toward scripts where repeatability matters more than improvisation.'],
             ].map(([title, copy]) => (
               <div key={title}>
                 <p style={{ ...monoLabel, color: 'var(--evidence-green)', marginBottom: '8px' }}>{title}</p>
@@ -465,12 +498,26 @@ function SectionHeader({ n, title, kicker }: { n: string; title: string; kicker:
 
 function CodePanel() {
   const lines = [
-    ['intake', 'operator sends idea, issue, voice note, or artifact'],
-    ['route', 'BarleyBot decides: answer, delegate, schedule, or escalate'],
-    ['research', 'Coffee gathers evidence before build decisions'],
-    ['build', 'Coder implements against the repo and project context'],
-    ['review', 'Siva approves ships and public-facing judgment calls'],
-    ['remember', 'Knowledge OS promotes only reusable decisions'],
+    '# operator_loop.md',
+    '',
+    'capture:',
+    '  accepts: idea | issue | voice_note | repo_commit | screenshot',
+    '  rule: keep the raw input, but do not confuse it with truth',
+    '',
+    'route:',
+    '  answer_now: small factual requests',
+    '  research: unclear problem or outside evidence needed',
+    '  build: approved change in a real repo',
+    '  schedule: reminder, follow-up, daily or weekly rhythm',
+    '  review: public, strategic, or sensitive decision',
+    '',
+    'remember:',
+    '  promote: reusable decision | source-backed pattern | shipped lesson',
+    '  reject: secrets | private customer detail | vague vibes',
+    '',
+    'publish:',
+    '  output: case_note | build_log | linkedin_draft',
+    '  principle: business problem first, tool second',
   ];
 
   return (
@@ -483,7 +530,7 @@ function CodePanel() {
       }}
     >
       <div style={{ borderBottom: '1px solid rgba(245,242,235,0.08)', padding: '14px 18px', display: 'flex', justifyContent: 'space-between', gap: '12px' }}>
-        <span style={{ ...monoLabel, color: 'var(--draft-blue)' }}>operator loop</span>
+        <span style={{ ...monoLabel, color: 'var(--draft-blue)' }}>operator_loop.md</span>
         <span style={{ fontFamily: 'var(--type-mono)', fontSize: '10px', color: 'rgba(245,242,235,0.35)' }}>plain English architecture</span>
       </div>
       <pre
@@ -497,7 +544,7 @@ function CodePanel() {
           color: 'rgba(245,242,235,0.72)',
         }}
       >
-        {lines.map(([key, value]) => `${key.padEnd(9, ' ')} -> ${value}`).join('\n')}
+        {lines.join('\n')}
       </pre>
     </div>
   );
